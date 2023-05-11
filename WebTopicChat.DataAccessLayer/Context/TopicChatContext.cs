@@ -80,6 +80,12 @@ namespace WebTopicChat.DataAccessLayer.Context
 
                 entity.Property(e => e.CreateTime).HasColumnType("datetime");
 
+                entity.HasOne(d => d.Sender)
+                    .WithMany(p => p.Messages)
+                    .HasForeignKey(d => d.SenderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Messages_Clients_Id_fk");
+
                 entity.HasOne(d => d.Topic)
                     .WithMany(p => p.Messages)
                     .HasForeignKey(d => d.TopicId)
