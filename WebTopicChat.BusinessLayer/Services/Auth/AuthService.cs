@@ -29,7 +29,7 @@ namespace WebTopicChat.BusinessLayer.Services.Auth
             }
             return new KeyValuePair<MessageViewModel, LoginViewModel?>(
                 new MessageViewModel { StatusCode = HttpStatusCode.OK, Message = "Authenticated" },
-                _mapper.Map<MessageViewModel>(client)
+                _mapper.Map<LoginViewModel>(client)
                 );
         }
     }
