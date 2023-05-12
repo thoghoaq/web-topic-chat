@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using WebTopicChat.BusinessLayer.Services.Auth;
+using WebTopicChat.BusinessLayer.Services.Topic;
 using WebTopicChat.DataAccessLayer.Context;
 using WebTopicChat.DataAccessLayer.Repositories.Client;
+using WebTopicChat.DataAccessLayer.Repositories.Topic;
 
 namespace WebTopicChat.BusinessLayer.DependencyInjection
 {
@@ -14,6 +16,9 @@ namespace WebTopicChat.BusinessLayer.DependencyInjection
 
             services.AddTransient<IClientRepository, ClientRepository>();
             services.AddScoped<IAuthService, AuthService>();
+
+            services.AddTransient<ITopicRepository, TopicRepository>();
+            services.AddScoped<ITopicServices, TopicService>();
 
             return services;
         }
