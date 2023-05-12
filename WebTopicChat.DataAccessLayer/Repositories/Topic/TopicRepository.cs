@@ -13,14 +13,6 @@ namespace WebTopicChat.DataAccessLayer.Repositories.Topic
 
         public dynamic? GetList()
         {
-            //var topics = _context.Topics.Select(e => new
-            //{
-            //    e.Id,
-            //    e.Name,
-            //    e.OwnerId,
-            //    e.Owner.DisplayName
-            //}
-            //).ToList();
             var topics = _context.Topics.Include(e => e.Owner);
             return topics;
         }

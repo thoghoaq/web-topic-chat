@@ -18,7 +18,6 @@ namespace WebTopicChat.BusinessLayer.Services.Topic
         {
             var result = _topicRepository.GetList();
             return _mapper.Map<List<TopicResponseModel>>(result);
-
         }
     }
 }

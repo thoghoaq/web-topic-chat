@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 using WebTopicChat.BusinessLayer.Extensions.AutoMapper.Modules.Auth;
+using WebTopicChat.BusinessLayer.Extensions.AutoMapper.Modules.Messages;
 using WebTopicChat.BusinessLayer.Extensions.AutoMapper.Modules.Topics;
 
 namespace WebTopicChat.BusinessLayer.Extensions.AutoMapper.Config
@@ -13,6 +14,7 @@ namespace WebTopicChat.BusinessLayer.Extensions.AutoMapper.Config
             {
                 mc.ConfigAuthModule();
                 mc.ConfigTopicModule();
+                mc.ConfigMessageModule();
             });
             IMapper mapper = mapperConfiguration.CreateMapper();
             services.AddSingleton(mapper);

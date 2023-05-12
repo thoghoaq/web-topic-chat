@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using WebTopicChat.BusinessLayer.Services.Auth;
+using WebTopicChat.BusinessLayer.Services.Message;
 using WebTopicChat.BusinessLayer.Services.Topic;
 
 namespace WebTopicChat.ServerAPI.Controllers
@@ -11,16 +10,24 @@ namespace WebTopicChat.ServerAPI.Controllers
     public class TopicController : ControllerBase
     {
         private readonly ITopicServices _topicService;
+        private readonly IMessageServices _messageService;
 
-        public TopicController(ITopicServices topicService)
+        public TopicController(ITopicServices topicService, IMessageServices messageServices)
         {
             _topicService = topicService;
+            _messageService = messageServices;
         }
 
         [HttpGet]
         public IActionResult GetList()
         {
             return Ok(_topicService.GetTopics());
+        }
+
+        [HttpGet("{topicId}/message")]
+        public IActionResult GetListOfTopic(int topicId)
+        {
+            return Ok(_messageService.GetMessageOfTopic(topicId));
         }
     }
 }
