@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using WebTopicChat.DataAccessLayer.Entities;
 
 namespace WebTopicChat.DataAccessLayer.Context
 {
