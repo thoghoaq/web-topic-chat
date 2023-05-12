@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebTopicChat.DataAccessLayer.Entities;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace WebTopicChat.DataAccessLayer.Context
 {
@@ -24,7 +24,7 @@ namespace WebTopicChat.DataAccessLayer.Context
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=CL-G3X1QH3;Initial Catalog=TopicChat;Integrated Security=True;Multiple Active Result Sets=True");
+                optionsBuilder.UseSqlServer("Server=CL-5CD8478Z0K\\SQLEXPRESS;database=TopicChat;user=sa;password=Adpass01@");
             }
         }
 
@@ -32,12 +32,14 @@ namespace WebTopicChat.DataAccessLayer.Context
         {
             modelBuilder.Entity<Client>(entity =>
             {
+                entity.HasKey(e => e.Id)
+                    .HasName("Clients_pk2")
+                    .IsClustered(false);
+
                 entity.HasIndex(e => e.Id, "Clients_Id_index");
 
-                entity.HasIndex(e => e.UserName, "Clients_pk2")
+                entity.HasIndex(e => e.UserName, "Clients_pk")
                     .IsUnique();
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.DisplayName).HasMaxLength(50);
 
@@ -74,7 +76,11 @@ namespace WebTopicChat.DataAccessLayer.Context
 
             modelBuilder.Entity<Message>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasKey(e => e.Id)
+                    .HasName("Messages_pk")
+                    .IsClustered(false);
+
+                entity.HasIndex(e => e.Id, "Messages_Id_index");
 
                 entity.Property(e => e.Content).HasMaxLength(255);
 
@@ -95,9 +101,11 @@ namespace WebTopicChat.DataAccessLayer.Context
 
             modelBuilder.Entity<Topic>(entity =>
             {
-                entity.HasIndex(e => e.Id, "Topics_Id_index");
+                entity.HasKey(e => e.Id)
+                    .HasName("Topics_pk")
+                    .IsClustered(false);
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.HasIndex(e => e.Id, "Topics_Id_index");
 
                 entity.Property(e => e.Name).HasMaxLength(50);
 
