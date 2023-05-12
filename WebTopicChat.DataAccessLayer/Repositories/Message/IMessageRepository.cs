@@ -8,6 +8,6 @@ namespace WebTopicChat.DataAccessLayer.Repositories.Message
 {
     public interface IMessageRepository
     {
-        dynamic? GetListOfTopic(string TopicId);
+        dynamic? GetListOfTopic(int topicId);
     }
 }

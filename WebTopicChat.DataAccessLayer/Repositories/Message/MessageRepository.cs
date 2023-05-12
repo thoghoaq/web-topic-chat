@@ -10,7 +10,7 @@ namespace WebTopicChat.DataAccessLayer.Repositories.Message
         {
             _context = context;
         }
-        public dynamic? GetListOfTopic(string topicId)
+        public dynamic? GetListOfTopic(int topicId)
         {
             var messages = _context.Messages.Where(e => e.TopicId.Equals(topicId)).Include(e => e.Topic).Include(e=>e.Sender);
             return messages;
