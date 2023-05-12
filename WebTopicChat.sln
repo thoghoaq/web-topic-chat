@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.BusinessLayer", "WebTopicChat.BusinessLayer\WebTopicChat.BusinessLayer.csproj", "{1C9DEEF8-E605-4B6F-A354-0D938A95FB76}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{ADCAC954-CCF2-467A-9367-89B2196B0B95}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.DataAccessLayer", "WebTopicChat.DataAccessLayer\WebTopicChat.DataAccessLayer.csproj", "{5EF2C978-D748-4322-84F0-EF3E018CDEAD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{3DDC9D5E-BDEE-4DF4-BD02-68F8C990C3EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.ServerAPI", "WebTopicChat.ServerAPI\WebTopicChat.ServerAPI.csproj", "{1DB07BF0-D435-4EA9-A4A5-B44524BB0860}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infra", "Infra", "{8E1E51C3-B414-44FA-891A-5E8A36689BD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTopicChat.ClientMVC", "WebTopicChat.ClientMVC\WebTopicChat.ClientMVC.csproj", "{A7D0A519-F7AA-4593-AA3E-4254A10334B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.Application", "Core\WebTopicChat.Application\WebTopicChat.Application.csproj", "{E2A5802A-3326-428F-A3D4-5F9F1529E727}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.Domain", "Core\WebTopicChat.Domain\WebTopicChat.Domain.csproj", "{E7321602-5B1F-42C2-9F61-CDE58FD38561}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.ClientMVC", "Host\WebTopicChat.ClientMVC\WebTopicChat.ClientMVC.csproj", "{5FFE6523-C389-4646-A2A4-44F299074687}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.ServerAPI", "Host\WebTopicChat.ServerAPI\WebTopicChat.ServerAPI.csproj", "{15D588E0-79D7-4D11-8EE7-D9771C8761F3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebTopicChat.Infrastruture", "Infra\WebTopicChat.Infrastructure\WebTopicChat.Infrastruture.csproj", "{BD3917FD-9DE1-410C-B286-0A979C4AABBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,25 +25,36 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1C9DEEF8-E605-4B6F-A354-0D938A95FB76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C9DEEF8-E605-4B6F-A354-0D938A95FB76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C9DEEF8-E605-4B6F-A354-0D938A95FB76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C9DEEF8-E605-4B6F-A354-0D938A95FB76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5EF2C978-D748-4322-84F0-EF3E018CDEAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EF2C978-D748-4322-84F0-EF3E018CDEAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EF2C978-D748-4322-84F0-EF3E018CDEAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EF2C978-D748-4322-84F0-EF3E018CDEAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1DB07BF0-D435-4EA9-A4A5-B44524BB0860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1DB07BF0-D435-4EA9-A4A5-B44524BB0860}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1DB07BF0-D435-4EA9-A4A5-B44524BB0860}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1DB07BF0-D435-4EA9-A4A5-B44524BB0860}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7D0A519-F7AA-4593-AA3E-4254A10334B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7D0A519-F7AA-4593-AA3E-4254A10334B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7D0A519-F7AA-4593-AA3E-4254A10334B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7D0A519-F7AA-4593-AA3E-4254A10334B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2A5802A-3326-428F-A3D4-5F9F1529E727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2A5802A-3326-428F-A3D4-5F9F1529E727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2A5802A-3326-428F-A3D4-5F9F1529E727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2A5802A-3326-428F-A3D4-5F9F1529E727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7321602-5B1F-42C2-9F61-CDE58FD38561}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7321602-5B1F-42C2-9F61-CDE58FD38561}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7321602-5B1F-42C2-9F61-CDE58FD38561}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7321602-5B1F-42C2-9F61-CDE58FD38561}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FFE6523-C389-4646-A2A4-44F299074687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FFE6523-C389-4646-A2A4-44F299074687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FFE6523-C389-4646-A2A4-44F299074687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FFE6523-C389-4646-A2A4-44F299074687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D588E0-79D7-4D11-8EE7-D9771C8761F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D588E0-79D7-4D11-8EE7-D9771C8761F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D588E0-79D7-4D11-8EE7-D9771C8761F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D588E0-79D7-4D11-8EE7-D9771C8761F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD3917FD-9DE1-410C-B286-0A979C4AABBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD3917FD-9DE1-410C-B286-0A979C4AABBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD3917FD-9DE1-410C-B286-0A979C4AABBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD3917FD-9DE1-410C-B286-0A979C4AABBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E2A5802A-3326-428F-A3D4-5F9F1529E727} = {ADCAC954-CCF2-467A-9367-89B2196B0B95}
+		{E7321602-5B1F-42C2-9F61-CDE58FD38561} = {ADCAC954-CCF2-467A-9367-89B2196B0B95}
+		{5FFE6523-C389-4646-A2A4-44F299074687} = {3DDC9D5E-BDEE-4DF4-BD02-68F8C990C3EB}
+		{15D588E0-79D7-4D11-8EE7-D9771C8761F3} = {3DDC9D5E-BDEE-4DF4-BD02-68F8C990C3EB}
+		{BD3917FD-9DE1-410C-B286-0A979C4AABBF} = {8E1E51C3-B414-44FA-891A-5E8A36689BD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E298B233-FC1C-4002-9D3C-2E1BFE3D5C5B}
