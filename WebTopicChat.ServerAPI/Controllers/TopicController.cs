@@ -29,5 +29,11 @@ namespace WebTopicChat.ServerAPI.Controllers
         {
             return Ok(_messageService.GetMessageOfTopic(topicId));
         }
+
+        [HttpPost]
+        public IActionResult AddTopic(string name, int ownerId)
+        {
+            return Ok(_topicService.AddTopic(name, ownerId));
+        }
     }
 }
