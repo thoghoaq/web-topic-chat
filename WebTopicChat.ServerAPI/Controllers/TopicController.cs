@@ -33,7 +33,9 @@ namespace WebTopicChat.ServerAPI.Controllers
         [HttpPost]
         public IActionResult AddTopic(string name, int ownerId)
         {
-            return Ok(_topicService.AddTopic(name, ownerId));
+            var result = _topicService.AddTopic(name, ownerId);
+            if (!result) return StatusCode(StatusCodes.Status500InternalServerError);
+            return StatusCode(StatusCodes.Status201Created);
         }
     }
 }
