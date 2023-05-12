@@ -2,11 +2,16 @@
 using Microsoft.Extensions.DependencyInjection;
 using WebTopicChat.BusinessLayer.Services.Message;
 using WebTopicChat.BusinessLayer.Services.Auth;
+
 using WebTopicChat.BusinessLayer.Services.Topic;
 using WebTopicChat.DataAccessLayer.Context;
 using WebTopicChat.DataAccessLayer.Repositories.Client;
 using WebTopicChat.DataAccessLayer.Repositories.Message;
 using WebTopicChat.DataAccessLayer.Repositories.Topic;
+
+using WebTopicChat.BusinessLayer.Services.Sub;
+using WebTopicChat.DataAccessLayer.Repositories.ClientTopic;
+
 
 namespace WebTopicChat.BusinessLayer.DependencyInjection
 {
@@ -19,11 +24,16 @@ namespace WebTopicChat.BusinessLayer.DependencyInjection
             services.AddTransient<IClientRepository, ClientRepository>();
             services.AddScoped<IAuthService, AuthService>();
 
+
             services.AddTransient<ITopicRepository, TopicRepository>();
             services.AddScoped<ITopicServices, TopicService>();
 
+
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddScoped<IMessageServices, MessageService>();
+
+            services.AddTransient<IClientTopicRepository, ClientTopicRepository>();
+            services.AddScoped<ISubService, SubService>();
 
             return services;
         }
