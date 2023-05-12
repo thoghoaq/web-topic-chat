@@ -20,9 +20,9 @@ namespace WebTopicChat.BusinessLayer.Services.Topic
             return _mapper.Map<List<TopicResponseModel>>(result);
         }
 
-        public bool AddTopic(string name, int ownerId)
+        public TopicResponseModel AddTopic(string name, int ownerId)
         {
-            return _topicRepository.AddTopic(name, ownerId);
+            return _mapper.Map<TopicResponseModel>(_topicRepository.AddTopic(name, ownerId));
         }
     }
 }

@@ -18,21 +18,15 @@ namespace WebTopicChat.DataAccessLayer.Repositories.Topic
             return topics;
         }
 
-        public bool AddTopic(string name, int ownerId)
+        public Entities.Topic AddTopic(string name, int ownerId)
         {
-            var add = _context.Topics.Add(new Entities.Topic
+            var  entity= _context.Topics.Add(new Entities.Topic
             {
                 Name = name,
                 OwnerId = ownerId
             });
-            if (add == null)
-            {
-                return false;
-            }else
-            {
-                _context.SaveChanges();
-                return true;
-            }
+            _context.SaveChanges();
+            return entity.Entity;
         }
     }
 }

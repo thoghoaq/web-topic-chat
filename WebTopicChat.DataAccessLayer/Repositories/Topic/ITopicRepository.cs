@@ -3,6 +3,6 @@
     public interface ITopicRepository
     {
         dynamic? GetList();
-        bool AddTopic(string name, int ownerId);
+        Entities.Topic AddTopic(string name, int ownerId);
     }
 }
