@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using WebTopicChat.Domain.DTOs.Request.Auth;
 using WebTopicChat.Infrastructure.Services.Auth;
 
 namespace WebTopicChat.ServerAPI.Controllers
@@ -16,9 +17,9 @@ namespace WebTopicChat.ServerAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login(LoginRequestModel model)
         {
-            var result = _authService.Login(username, password);
+            var result = _authService.Login(model.UserName, model.Password);
             if (result.Key.StatusCode == HttpStatusCode.OK)
             {
                 return Ok(result.Value);
