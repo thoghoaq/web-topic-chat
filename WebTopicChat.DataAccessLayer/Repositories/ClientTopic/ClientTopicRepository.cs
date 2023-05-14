@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using WebTopicChat.DataAccessLayer.Context;
+﻿using WebTopicChat.DataAccessLayer.Context;
 
 namespace WebTopicChat.DataAccessLayer.Repositories.ClientTopic
 {
@@ -20,7 +18,7 @@ namespace WebTopicChat.DataAccessLayer.Repositories.ClientTopic
 
         public dynamic? AddClientTopic(int clientId, int topicId)
         { 
-            if (_context.ClientTopics.SingleOrDefault(x => x.ClientId == clientId) == null && _context.ClientTopics.SingleOrDefault(y => y.TopicId == topicId) == null)
+            if (_context.ClientTopics.SingleOrDefault(x => x.ClientId == clientId && x.TopicId == topicId) != null)
             {
                 return null;
             }
@@ -30,7 +28,7 @@ namespace WebTopicChat.DataAccessLayer.Repositories.ClientTopic
                 {
                     TopicId = topicId,
                     ClientId = clientId,
-                    CreateTime = DateTime.UtcNow,
+                    CreateTime = DateTime.Now,
                 };
                 _context.ClientTopics.Add(newClientTopic);
                 _context.SaveChanges();
@@ -39,7 +37,7 @@ namespace WebTopicChat.DataAccessLayer.Repositories.ClientTopic
             }
         }
 
-        public dynamic? RemoveClientTopic(int clientId, int topicId)
+        public bool RemoveClientTopic(int clientId, int topicId)
         {
             var deleteClientTopic = _context.ClientTopics
                 .Where(x => x.TopicId == topicId && x.ClientId == clientId)
