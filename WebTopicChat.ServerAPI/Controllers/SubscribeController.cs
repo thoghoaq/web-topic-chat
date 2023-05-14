@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
-using WebTopicChat.BusinessLayer;
+using Microsoft.AspNetCore.SignalR;
 using WebTopicChat.BusinessLayer.Services.Sub;
 
 namespace WebTopicChat.ServerAPI.Controllers
 {
     [ApiController]
-    [Route("topics/{topicID}/sub")]
+    [Route("topic/{topicId}")]
     public class SubscribeController : ControllerBase
     {
         private readonly ISubService _subscribeService;
@@ -16,21 +15,20 @@ namespace WebTopicChat.ServerAPI.Controllers
             _subscribeService = subscribeService;
         }
 
-        [HttpPost]
-        [ActionName(nameof(Subscribe))]
-        public IActionResult Subscribe(int clientId, int topicID)
+        [HttpPost("sub")]
+        public IActionResult SubscribePost(int clientId, int topicId)
         {
-            var result = _subscribeService.Subscribe(clientId, topicID);
+            var result = _subscribeService.Subscribe(clientId, topicId);
             if (result != null)
-                return CreatedAtAction("Subscribe", result);
+                return CreatedAtAction("SubscribePost", result);
             else
                 return Conflict();
         }
 
-        [HttpPut]
-        public IActionResult Unsubscribe(int clientId, int topicID)
+        [HttpPut("unsub")]
+        public IActionResult UnsubscribePut(int clientId, int topicId)
         {
-            var result = _subscribeService.Unsubscribe(clientId, topicID);
+            var result = _subscribeService.Unsubscribe(clientId, topicId);
             if (result == true)
                 return NoContent();
             else

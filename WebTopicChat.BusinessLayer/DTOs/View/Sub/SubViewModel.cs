@@ -1,7 +1,4 @@
-﻿
-using WebTopicChat.DataAccessLayer.Entities;
-
-namespace WebTopicChat.BusinessLayer.DTOs.View.Sub
+﻿namespace WebTopicChat.BusinessLayer.DTOs.View.Sub
 {
     public class SubViewModel
     {
