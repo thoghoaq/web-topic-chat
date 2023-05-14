@@ -36,12 +36,5 @@ namespace WebTopicChat.ServerAPI.Controllers
             var result = _topicService.AddTopic(name, ownerId);
             return CreatedAtAction("addTopic", result);
         }
-
-        [HttpPost("{topicId}/send")]
-        public IActionResult SendMessage(int topicId, int clientId, string Msg)
-        {
-            var result = _messageService.SendMessage(topicId, clientId, Msg);
-            return CreatedAtAction("SendMessage", result);
-        }
     }
 }
