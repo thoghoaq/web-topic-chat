@@ -6,7 +6,7 @@ using WebTopicChat.Infrastructure.Services.Auth;
 namespace WebTopicChat.ServerAPI.Controllers
 {
     [ApiController]
-    [Route("auth")]
+    [Route("api/v1/auth")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
