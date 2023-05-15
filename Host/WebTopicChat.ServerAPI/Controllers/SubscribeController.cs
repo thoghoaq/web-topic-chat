@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using WebTopicChat.Domain.DTOs.View.Sub;
 using WebTopicChat.Infrastructure;
 using WebTopicChat.Infrastructure.Services.Sub;
 
 namespace WebTopicChat.ServerAPI.Controllers
 {
     [ApiController]
-    [Route("api/v1/topics/{topicID}/sub")]
+    [Route("api/v1/topic")]
     public class SubscribeController : ControllerBase
     {
         private readonly ISubService _subscribeService;
@@ -16,21 +17,20 @@ namespace WebTopicChat.ServerAPI.Controllers
             _subscribeService = subscribeService;
         }
 
-        [HttpPost]
-        [ActionName(nameof(Subscribe))]
-        public IActionResult Subscribe(int clientId, int topicID)
+        [HttpPost("sub")]
+        public IActionResult SubscribePost(SubViewModel subView)
         {
-            var result = _subscribeService.Subscribe(clientId, topicID);
+            var result = _subscribeService.Subscribe(subView.ClientId, subView.TopicId);
             if (result != null)
-                return CreatedAtAction("Subscribe", result);
+                return CreatedAtAction("SubscribePost", result);
             else
                 return Conflict();
         }
 
-        [HttpPut]
-        public IActionResult Unsubscribe(int clientId, int topicID)
+        [HttpPut("unsub")]
+        public IActionResult UnsubscribePut(SubViewModel subView)
         {
-            var result = _subscribeService.Unsubscribe(clientId, topicID);
+            var result = _subscribeService.Unsubscribe(subView.ClientId, subView.TopicId);
             if (result == true)
                 return NoContent();
             else

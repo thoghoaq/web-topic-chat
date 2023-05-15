@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using WebTopicChat.Domain.DTOs.Response.Message;
-using WebTopicChat.Infrastructure.Services.Message;
 using WebTopicChat.Application.Repositories.Message;
+using WebTopicChat.Domain.DTOs.Request.Message;
 
 namespace WebTopicChat.Infrastructure.Services.Message
 {
@@ -15,6 +15,12 @@ namespace WebTopicChat.Infrastructure.Services.Message
             _mapper = mapper;
         }
 
+        public MessageResponseModel SendMessage(int topicId, int clientId, string Msg)
+        {
+            var result = _MessageRepository.SendMessage(topicId, clientId, Msg);
+            return _mapper.Map<MessageRequestModel>(result);
+        }
+        
         public List<MessageResponseModel> GetMessageOfTopic(int topicId)
         {
             var result = _MessageRepository.GetListOfTopic(topicId);
