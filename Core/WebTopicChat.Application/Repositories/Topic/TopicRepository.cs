@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-<<<<<<< HEAD:WebTopicChat.DataAccessLayer/Repositories/Topic/TopicRepository.cs
-using WebTopicChat.DataAccessLayer.Context;
-=======
-using System.Reflection.Metadata;
 using WebTopicChat.Application.Context;
->>>>>>> 40fe3ce9b7fee542c782a2542d0183f537774459:Core/WebTopicChat.Application/Repositories/Topic/TopicRepository.cs
 
 namespace WebTopicChat.Application.Repositories.Topic
 {

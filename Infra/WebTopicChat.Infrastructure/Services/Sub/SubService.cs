@@ -1,14 +1,6 @@
 ﻿using AutoMapper;
-<<<<<<< HEAD:WebTopicChat.BusinessLayer/Services/Sub/SubService.cs
-using WebTopicChat.BusinessLayer.DTOs.View.Sub;
-using WebTopicChat.DataAccessLayer.Repositories.ClientTopic;
-=======
-using System.Xml.Linq;
-using WebTopicChat.Domain.DTOs.Response.Topic;
 using WebTopicChat.Domain.DTOs.View.Sub;
-using WebTopicChat.Domain.Entities;
 using WebTopicChat.Application.Repositories.ClientTopic;
->>>>>>> 40fe3ce9b7fee542c782a2542d0183f537774459:Infra/WebTopicChat.Infrastructure/Services/Sub/SubService.cs
 
 namespace WebTopicChat.Infrastructure.Services.Sub
 {

@@ -1,10 +1,4 @@
-<<<<<<< HEAD:WebTopicChat.DataAccessLayer/Repositories/ClientTopic/ClientTopicRepository.cs
-﻿using WebTopicChat.DataAccessLayer.Context;
-=======
-﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using WebTopicChat.Application.Context;
->>>>>>> 40fe3ce9b7fee542c782a2542d0183f537774459:Core/WebTopicChat.Application/Repositories/ClientTopic/ClientTopicRepository.cs
 
 namespace WebTopicChat.Application.Repositories.ClientTopic
 {

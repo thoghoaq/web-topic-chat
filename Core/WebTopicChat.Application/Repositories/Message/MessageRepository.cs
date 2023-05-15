@@ -24,7 +24,7 @@ namespace WebTopicChat.Application.Repositories.Message
             }
             else
             {
-                var newMsg = new Entities.Message
+                var newMsg = new Domain.Entities.Message
                 {
                     TopicId = topicId,
                     SenderId = clientId,

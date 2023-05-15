@@ -1,15 +1,12 @@
-<<<<<<< HEAD:WebTopicChat.BusinessLayer/DTOs/View/Sub/SubViewModel.cs
-﻿namespace WebTopicChat.BusinessLayer.DTOs.View.Sub
-=======
-﻿
-using WebTopicChat.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebTopicChat.Domain.DTOs.View.Sub
->>>>>>> 40fe3ce9b7fee542c782a2542d0183f537774459:Core/WebTopicChat.Domain/DTOs/View/Sub/SubViewModel.cs
 {
     public class SubViewModel
     {
+        [Required]
         public int ClientId { get; set; }
+        [Required]
         public int TopicId { get; set; }
         public DateTime CreateTime { get; set; } 
     }
