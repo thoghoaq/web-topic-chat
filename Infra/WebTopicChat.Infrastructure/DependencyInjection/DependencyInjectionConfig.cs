@@ -24,10 +24,8 @@ namespace WebTopicChat.Infrastructure.DependencyInjection
             services.AddTransient<IClientRepository, ClientRepository>();
             services.AddScoped<IAuthService, AuthService>();
 
-
             services.AddTransient<ITopicRepository, TopicRepository>();
             services.AddScoped<ITopicServices, TopicService>();
-
 
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddScoped<IMessageServices, MessageService>();
