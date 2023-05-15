@@ -6,5 +6,6 @@
         public string Name { get; set; } = null!;
         public int OwnerId { get; set; }
         public string OwnerName { get; set; } = null!;
+        public DateTime CreateTime { get; set; }
     }
 }

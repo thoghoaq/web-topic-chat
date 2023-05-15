@@ -61,8 +61,6 @@ namespace WebTopicChat.Application.Context
 
                 entity.ToTable("ClientTopic");
 
-                entity.Property(e => e.CreateTime).HasColumnType("datetime");
-
                 entity.HasOne(d => d.Client)
                     .WithMany(p => p.ClientTopics)
                     .HasForeignKey(d => d.ClientId)
@@ -110,6 +108,8 @@ namespace WebTopicChat.Application.Context
                 entity.HasIndex(e => e.Id, "Topics_Id_index");
 
                 entity.Property(e => e.Name).HasMaxLength(50);
+
+                entity.Property(e => e.CreateTime).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Owner)
                     .WithMany(p => p.Topics)
