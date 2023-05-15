@@ -1,4 +1,5 @@
-﻿using WebTopicChat.Application.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using WebTopicChat.Application.Context;
 
 namespace WebTopicChat.Application.Repositories.Client
 {
@@ -9,6 +10,18 @@ namespace WebTopicChat.Application.Repositories.Client
         public ClientRepository(TopicChatContext context)
         {
             _context = context;
+        }
+
+        public Domain.Entities.Client Create(string userName, string password, string displayName)
+        {
+            var entity = new Domain.Entities.Client(){
+                UserName = userName,
+                Password = password,
+                DisplayName = displayName
+            };
+            _context.Clients.Add(entity);
+            _context.SaveChanges();
+            return entity;
         }
 
         public dynamic? Get(string userName, string password)

@@ -3,6 +3,7 @@ using System.Net;
 using WebTopicChat.Domain.DTOs.View.Auth;
 using WebTopicChat.Domain.DTOs.View.Common;
 using WebTopicChat.Application.Repositories.Client;
+using WebTopicChat.Domain.DTOs.Request.Auth;
 
 namespace WebTopicChat.Infrastructure.Services.Auth
 {
@@ -31,6 +32,13 @@ namespace WebTopicChat.Infrastructure.Services.Auth
                 new MessageViewModel { StatusCode = HttpStatusCode.OK, Message = "Authenticated" },
                 _mapper.Map<LoginViewModel>(client)
                 );
+        }
+
+        public LoginViewModel Register(RegisterRequestModel model)
+        {
+            var client = _clientRepository.Create(model.UserName, model.Password, model.DisplayName);
+            var viewModel = _mapper.Map<LoginViewModel>(client);
+            return viewModel;
         }
     }
 }
