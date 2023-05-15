@@ -22,7 +22,9 @@ namespace WebTopicChat.Infrastructure.Extensions.AutoMapper.Modules.Messages
 
         public static void ConfigMessageRequestModule(this IMapperConfigurationExpression mc)
         {
-            mc.CreateMap<Message, MessageRequestModel>().ReverseMap();
+            mc.CreateMap<Message, MessageRequestModel>().ForMember(
+                dest => dest.clientId,
+                opt => opt.MapFrom(src => src.SenderId)).ReverseMap();
         }
     }
 }

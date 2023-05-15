@@ -8,6 +8,5 @@ namespace WebTopicChat.Domain.DTOs.View.Sub
         public int ClientId { get; set; }
         [Required]
         public int TopicId { get; set; }
-        public DateTime CreateTime { get; set; } 
     }
 }
