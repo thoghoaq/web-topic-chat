@@ -19,10 +19,15 @@ namespace WebTopicChat.Infrastructure.Services.Topic
             _messageRepository = messageRepository;
         }
 
-        public List<TopicResponseModel> GetTopics()
+        public List<TopicResponseModel> GetTopics(int clientId)
         {
-            var result = _topicRepository.GetList();
-            return _mapper.Map<List<TopicResponseModel>>(result);
+            var listTopic = (List<Domain.Entities.Topic>?)_topicRepository.GetList();
+            var result = _mapper.Map<List<TopicResponseModel>>(listTopic);
+            foreach (var topic in result)
+            {
+                topic.IsSubcribed = listTopic.Any(e => e.ClientTopics.Any(e => e.ClientId.Equals(clientId) && e.TopicId.Equals(topic.Id)));
+            }
+            return result;
         }
 
         public TopicResponseModel AddTopic(string name, int ownerId)

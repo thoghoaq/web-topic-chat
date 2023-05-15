@@ -21,9 +21,9 @@ namespace WebTopicChat.ServerAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetList()
+        public IActionResult GetList(int clientId)
         {
-            return Ok(_topicService.GetTopics());
+            return Ok(_topicService.GetTopics(clientId));
         }
 
         [HttpGet("{topicId}/message")]
