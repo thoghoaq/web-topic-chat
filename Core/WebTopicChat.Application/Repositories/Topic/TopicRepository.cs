@@ -13,8 +13,10 @@ namespace WebTopicChat.Application.Repositories.Topic
 
         public dynamic? GetList()
         {
-            var topics = _context.Topics.Include(e => e.Owner).OrderByDescending(e => e.CreateTime);
-            return topics;
+            var topics = _context.Topics
+                .Include(e => e.ClientTopics)
+                .Include(e => e.Owner).OrderByDescending(e => e.CreateTime);
+            return topics.ToList();
         }
 
         public Domain.Entities.Topic AddTopic(string name, int ownerId)

@@ -10,7 +10,10 @@ namespace WebTopicChat.Infrastructure.Extensions.AutoMapper.Modules.Topics
         {
             mc.CreateMap<Topic, TopicResponseModel>().ForMember(
                 dest => dest.OwnerName,
-                opt => opt.MapFrom(src => src.Owner.DisplayName)
+                opt => opt.MapFrom(src => src.Owner.DisplayName))
+                .ForMember(
+                dest => dest.IsSubcribed,
+                opt => opt.Ignore()
                 ).ReverseMap();
         }
     }

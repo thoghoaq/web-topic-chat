@@ -6,7 +6,7 @@ namespace WebTopicChat.Infrastructure.Services.Topic
 {
     public interface ITopicServices
     {
-        List<TopicResponseModel> GetTopics();
+        List<TopicResponseModel> GetTopics(int clientId);
         TopicResponseModel AddTopic(string name, int ownerId);
         MessageResponseModel SendMessage(int id, SendMessageRequestModel requestModel);
     }
