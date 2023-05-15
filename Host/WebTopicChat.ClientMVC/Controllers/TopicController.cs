@@ -2,6 +2,7 @@
 using WebTopicChat.ClientMVC.Models;
 using System.Text.Json;
 using System.Net.Http.Headers;
+using WebTopicChat.ClientMVC.Common;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -14,7 +15,7 @@ namespace WebTopicChat.ClientMVC.Controllers
             clients = new HttpClient();
             var contentType = new MediaTypeWithQualityHeaderValue("application/json");
             clients.DefaultRequestHeaders.Accept.Add(contentType);
-            apiUrl = "https://localhost:7033/topic";
+            apiUrl = ApiUrls.reUrl + "topic";
         }
 
         public async Task<IActionResult> GetList()
