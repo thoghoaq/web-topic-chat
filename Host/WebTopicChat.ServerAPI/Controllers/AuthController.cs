@@ -6,7 +6,7 @@ using WebTopicChat.Infrastructure.Services.Auth;
 namespace WebTopicChat.ServerAPI.Controllers
 {
     [ApiController]
-    [Route("auth")]
+    [Route("api/v1/auth")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthService _authService;
@@ -16,7 +16,7 @@ namespace WebTopicChat.ServerAPI.Controllers
             _authService = authService;
         }
 
-        [HttpPost]
+        [HttpPost("login")]
         public IActionResult Login(LoginRequestModel model)
         {
             var result = _authService.Login(model.UserName, model.Password);
@@ -28,6 +28,12 @@ namespace WebTopicChat.ServerAPI.Controllers
             {
                 return Unauthorized(result.Key);
             }
+        }
+        [HttpPost("register")]
+        public IActionResult Register(RegisterRequestModel model)
+        {
+            var result = _authService.Register(model);
+            return CreatedAtAction("Register", result);
         }
     }
 }

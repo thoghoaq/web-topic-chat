@@ -17,4 +17,8 @@
     <ProjectReference Include="..\..\Core\WebTopicChat.Application\WebTopicChat.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Test\" />
+  </ItemGroup>
+
 </Project>

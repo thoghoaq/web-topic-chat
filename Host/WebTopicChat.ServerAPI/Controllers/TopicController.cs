@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebTopicChat.Domain.DTOs.Request.Message;
+using WebTopicChat.Domain.DTOs.Request.Topic;
 using WebTopicChat.Infrastructure.Services.Message;
 using WebTopicChat.Infrastructure.Services.Topic;
 
 namespace WebTopicChat.ServerAPI.Controllers
 {
     [ApiController]
-    [Route("topic")]   
+    [Route("api/v1/topic")]   
     
     public class TopicController : ControllerBase
     {
@@ -31,10 +33,27 @@ namespace WebTopicChat.ServerAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTopic(string name, int ownerId)
+        public IActionResult AddTopic(TopicRequestModel model)
         {
-            var result = _topicService.AddTopic(name, ownerId);
+            var result = _topicService.AddTopic(model.name, model.ownerId);
             return CreatedAtAction("addTopic", result);
+        }
+
+        [HttpPost("{topicId}/send")]
+        public IActionResult SendMessage(MessageRequestModel messageRequestModel)
+        {
+            // Get topicId from route value
+            var topicId_Route = Convert.ToInt32(HttpContext.GetRouteValue("topicId").ToString());
+            var result = _messageService.SendMessage(topicId_Route, messageRequestModel.clientId, messageRequestModel.Content);
+            Console.WriteLine(result.clientId);
+            return CreatedAtAction("SendMessage", result);
+        }
+
+        [HttpPost("{id}/send-message")]
+        public IActionResult SendMessage([FromRoute]int id, [FromBody]SendMessageRequestModel requestModel)
+        {
+            var messageResponse = _topicService.SendMessage(id, requestModel);
+            return CreatedAtAction("SendMessage", messageResponse);
         }
     }
 }

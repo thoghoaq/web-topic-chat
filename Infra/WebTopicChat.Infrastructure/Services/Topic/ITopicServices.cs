@@ -1,4 +1,6 @@
-﻿using WebTopicChat.Domain.DTOs.Response.Topic;
+﻿using WebTopicChat.Domain.DTOs.Request.Topic;
+using WebTopicChat.Domain.DTOs.Response.Message;
+using WebTopicChat.Domain.DTOs.Response.Topic;
 
 namespace WebTopicChat.Infrastructure.Services.Topic
 {
@@ -6,5 +8,6 @@ namespace WebTopicChat.Infrastructure.Services.Topic
     {
         List<TopicResponseModel> GetTopics();
         TopicResponseModel AddTopic(string name, int ownerId);
+        MessageResponseModel SendMessage(int id, SendMessageRequestModel requestModel);
     }
 }
