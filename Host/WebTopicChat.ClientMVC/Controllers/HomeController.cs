@@ -1,19 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Models;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public IActionResult Index()
         {
-            _logger = logger;
+            return View();
+        }
+        public IActionResult Search()
+        {
+            return View();
+        }
+        public IActionResult TopicContent()
+        {
+            return View();
         }
 
-        public IActionResult Index()
+        public IActionResult GetList()
         {
             return View();
         }

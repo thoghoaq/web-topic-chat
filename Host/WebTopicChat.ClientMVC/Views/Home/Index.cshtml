@@ -16,12 +16,12 @@
     <div class="col-md-12 col-lg-12 col-xl-12 text-white text-center center">
         WELCOME TO <br /> OUR TOPIC-CHAT WEB
     </div>
-    <form asp-action="RsvpForm" method="post">
+    <form asp-action="Auth" method="post">
         <div>
-            <input class="form-control mr-sm-2 m-1" type="text" asp-for="UserName" placeholder="Username" />
+            <input name="username" class=" form-control mr-sm-2 m-1" type="text" asp-for="UserName" placeholder="Username" />
         </div>
         <div>
-            <input class="form-control mr-sm-2 m-1" asp-for="Password" placeholder="Passwword" />
+            <input name="password" class="form-control mr-sm-2 m-1" asp-for="Password" placeholder="Passwword" />
         </div>
         <button class="form-control mr-sm-2 m-1 f" style="width:100px"type="submit">Login</button>
     </form>

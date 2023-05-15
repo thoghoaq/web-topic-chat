@@ -1,0 +1,9 @@
+﻿body {
+    background-image: url("../img/Capture3.PNG");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    font-family: Courier New, Courier, monospace;
+    font-size: 55px;
+}
