@@ -7,3 +7,13 @@
     font-family: Courier New, Courier, monospace;
     font-size: 55px;
 }
+
+.join-btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}

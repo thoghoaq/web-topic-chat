@@ -14,37 +14,54 @@
 </head>
 <body>
     <div class="container-fluid">
-        <div class="row text-white">
+        <div class="row">
             <div class="col-12 col-md-12 col-xl-12 text-center center">
-                <a href="#"> Create new </a>
                 @if (Model == null || !Model.Any())
                 {
                     <p>No topics found!</p>
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table text-white border-1 m-3">
                         <thead>
                             <tr>
-                                <th>Topic ID</th>
                                 <th>Topic Name</th>
-                                <th>Owner ID</th>
                                 <th>Owner Name</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var topic in Model)
                             {
                                 <tr>
-                                    <td>@topic.id</td>
-                                    <td>@topic.name</td>
-                                    <td>@topic.ownerId</td>
-                                    <td>@topic.ownerName</td>
+                                    <td>@topic.Name</td>
+                                    <td>@topic.OwnerName</td>
+                                    <td>
+                                    <td>
+                                        @if (topic.IsSubcribed == true)
+                                        {
+                                        @Html.ActionLink("Join", "GetMessage", new { id = topic.Id }) 
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (topic.IsSubcribed == false)
+                                        {
+                                            <button asp-action="" class="join-btn bg-primary">Sub</button>
+                                        }
+                                        else
+                                        {
+                                            <button asp-action="" class="join-btn bg-danger">UnSub</button>
+                                        }
+                                    </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 }
+                <div class="text-white">
+                    If you don’t subcribe any topic?  <a href="#"> Create new </a>
+                </div>
+                
             </div>
         </div>
     </div>

@@ -3,6 +3,8 @@ using WebTopicChat.ClientMVC.Models;
 using Newtonsoft.Json;
 using System.Text;
 using WebTopicChat.ClientMVC.Common;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -30,7 +32,14 @@ namespace WebTopicChat.ClientMVC.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return View("GetList");
+
+                // extract the id from the JSON response
+                var json = JObject.Parse(result);
+                var userid = json["id"].Value<int>();
+
+                // store the id in session
+                HttpContext.Session.SetInt32("UserID", userid);
+                return RedirectToAction("GetList", "Topic");
             }
             else
             {
