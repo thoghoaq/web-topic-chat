@@ -27,7 +27,7 @@ namespace WebTopicChat.ServerAPI.Controllers
                 return Conflict();
         }
 
-        [HttpPut("unsub")]
+        [HttpDelete("unsub")]
         public IActionResult UnsubscribePut(SubViewModel subView)
         {
             var result = _subscribeService.Unsubscribe(subView.ClientId, subView.TopicId);
