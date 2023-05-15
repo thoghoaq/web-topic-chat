@@ -5,7 +5,7 @@ using WebTopicChat.Infrastructure.Services.Topic;
 namespace WebTopicChat.ServerAPI.Controllers
 {
     [ApiController]
-    [Route("topic")]   
+    [Route("api/v1/topic")]   
     
     public class TopicController : ControllerBase
     {

@@ -6,7 +6,7 @@ using WebTopicChat.Infrastructure.Services.Sub;
 namespace WebTopicChat.ServerAPI.Controllers
 {
     [ApiController]
-    [Route("topics/{topicID}/sub")]
+    [Route("api/v1/topics/{topicID}/sub")]
     public class SubscribeController : ControllerBase
     {
         private readonly ISubService _subscribeService;
