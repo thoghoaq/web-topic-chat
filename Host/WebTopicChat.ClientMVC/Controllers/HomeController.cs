@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Models;
+using Newtonsoft.Json;
+using System.Text;
+using Microsoft.EntityFrameworkCore;
+using WebTopicChat.Application;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -11,29 +14,37 @@ namespace WebTopicChat.ClientMVC.Controllers
         {
             return View();
         }
-        public IActionResult Search()
+
+        private readonly HttpClient clients = null;
+        private string apiUrl = "";
+
+        public HomeController()
         {
-            return View();
-        }
-        public IActionResult TopicContent()
-        {
-            return View();
+            clients = new HttpClient();
+            apiUrl = "https://localhost:7033/auth";
         }
 
-        public IActionResult GetList()
+        public async Task<IActionResult> Auth(Client client)
         {
-            return View();
-        }
+            var content = new StringContent(JsonConvert.SerializeObject(client), Encoding.UTF8, "application/json");
+            var response = await clients.PostAsync(apiUrl, content);
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return View("GetList");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Wrong username or password. Please try again.";
+                return View("Index");
+            }
         }
     }
 }
+
+
+
+
+
+

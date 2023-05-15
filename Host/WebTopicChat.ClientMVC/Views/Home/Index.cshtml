@@ -17,13 +17,19 @@
         WELCOME TO <br /> OUR TOPIC-CHAT WEB
     </div>
     <form asp-action="Auth" method="post">
+        <h5 class="text-center">
+            @if (ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+            }
+        </h5>
         <div>
-            <input name="username" class=" form-control mr-sm-2 m-1" type="text" asp-for="UserName" placeholder="Username" />
+            <input class="form-control mr-sm-2 m-1" type="text" asp-for="UserName" placeholder="Username" />
         </div>
         <div>
-            <input name="password" class="form-control mr-sm-2 m-1" asp-for="Password" placeholder="Passwword" />
+            <input class="form-control mr-sm-2 m-1" asp-for="Password" placeholder="Passwword" />
         </div>
-        <button class="form-control mr-sm-2 m-1 f" style="width:100px"type="submit">Login</button>
+        <button class="form-control mr-sm-2 m-1 f" style="width:100px" type="submit">Login</button>
     </form>
 </body>
 </html>
