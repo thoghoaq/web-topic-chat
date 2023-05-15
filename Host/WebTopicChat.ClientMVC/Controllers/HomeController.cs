@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Models;
 using Newtonsoft.Json;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
-using WebTopicChat.Application;
+using WebTopicChat.ClientMVC.Common;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -21,7 +19,7 @@ namespace WebTopicChat.ClientMVC.Controllers
         public HomeController()
         {
             clients = new HttpClient();
-            apiUrl = "https://localhost:7033/auth";
+            apiUrl = ApiUrls.reUrl + "auth/login";
         }
 
         public async Task<IActionResult> Auth(Client client)

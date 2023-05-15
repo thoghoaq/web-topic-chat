@@ -2,7 +2,7 @@
 {
     public class TopicViewModel
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public string name { get; set; }
         public int ownerId { get; set; }
         public string ownerName { get; set; }
