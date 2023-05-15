@@ -2,10 +2,12 @@
 {
     public class TopicViewModel
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int ownerId { get; set; }
-        public string ownerName { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int OwnerId { get; set; }
+        public string OwnerName { get; set; }
+        public DateTime CreateTime { get; set; }
+        public bool IsSubcribed { get; set; }
     }
 
 }
