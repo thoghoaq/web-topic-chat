@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebTopicChat.Application.Context;
+﻿using WebTopicChat.Application.Context;
 
 namespace WebTopicChat.Application.Repositories.Client
 {

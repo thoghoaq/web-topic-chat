@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebTopicChat.Domain.DTOs.Request.Message;
+using WebTopicChat.Domain.DTOs.Request.Topic;
 using WebTopicChat.Infrastructure.Services.Message;
 using WebTopicChat.Infrastructure.Services.Topic;
 
@@ -32,9 +33,9 @@ namespace WebTopicChat.ServerAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddTopic(string name, int ownerId)
+        public IActionResult AddTopic(TopicRequestModel model)
         {
-            var result = _topicService.AddTopic(name, ownerId);
+            var result = _topicService.AddTopic(model.name, model.ownerId);
             return CreatedAtAction("addTopic", result);
         }
 
