@@ -36,27 +36,6 @@ namespace WebTopicChat.Application.Repositories.Message
             return messages;
         }
 
-        public dynamic? SendMessage(int topicId, int clientId, string contentMsg)
-        {
-            if (_context.ClientTopics.SingleOrDefault(x => x.TopicId == topicId && x.ClientId == clientId) == null)
-            {
-                return null;
-            }
-            else
-            {
-                var newMsg = new Domain.Entities.Message
-                {
-                    TopicId = topicId,
-                    SenderId = clientId,
-                    CreateTime = DateTime.Now,
-                    Content = contentMsg
-                };
-                _context.Messages.Add(newMsg);
-                _context.SaveChanges();
-
-                return newMsg;
-            }
-        }
         public Domain.Entities.Message? GetMessage(int id)
         {
             return _context.Messages

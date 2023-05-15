@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using WebTopicChat.Domain.DTOs.Request.Message;
 using WebTopicChat.Domain.DTOs.Response.Message;
 using WebTopicChat.Domain.Entities;
 
@@ -18,13 +17,6 @@ namespace WebTopicChat.Infrastructure.Extensions.AutoMapper.Modules.Messages
                 )
                 .ForMember(dest => dest.MessageId, opt => opt.MapFrom(src => src.Id))
                 .ReverseMap();
-        }
-
-        public static void ConfigMessageRequestModule(this IMapperConfigurationExpression mc)
-        {
-            mc.CreateMap<Message, MessageRequestModel>().ForMember(
-                dest => dest.clientId,
-                opt => opt.MapFrom(src => src.SenderId)).ReverseMap();
         }
     }
 }
