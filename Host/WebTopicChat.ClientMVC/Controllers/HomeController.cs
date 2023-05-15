@@ -30,7 +30,7 @@ namespace WebTopicChat.ClientMVC.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                return View("GetList");
+                return RedirectToAction("GetList", "Topic");
             }
             else
             {
