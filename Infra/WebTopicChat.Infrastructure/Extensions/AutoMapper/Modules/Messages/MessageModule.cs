@@ -14,7 +14,9 @@ namespace WebTopicChat.Infrastructure.Extensions.AutoMapper.Modules.Messages
                 ).ForMember(
                 dest => dest.SenderName,
                 opt => opt.MapFrom(src => src.Sender.DisplayName)
-                ).ReverseMap();
+                )
+                .ForMember(dest => dest.MessageId, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
         }
     }
 }
