@@ -142,7 +142,10 @@ namespace MultiServer
             else
             {
                 byte[] data = Encoding.ASCII.GetBytes("Message from server: " + text);
-                current.Send(data);
+                foreach (var client in clientSockets)
+                {
+                    client.Send(data);
+                }
             }
 
             current.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, ReceiveCallback, current);
