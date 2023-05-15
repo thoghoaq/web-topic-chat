@@ -45,6 +45,7 @@ namespace WebTopicChat.ServerAPI.Controllers
             // Get topicId from route value
             var topicId_Route = Convert.ToInt32(HttpContext.GetRouteValue("topicId").ToString());
             var result = _messageService.SendMessage(topicId_Route, messageRequestModel.clientId, messageRequestModel.Content);
+            Console.WriteLine(result.clientId);
             return CreatedAtAction("SendMessage", result);
         }
     }
