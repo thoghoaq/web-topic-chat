@@ -28,7 +28,6 @@ namespace WebTopicChat.Application.Repositories.ClientTopic
                 {
                     TopicId = topicId,
                     ClientId = clientId,
-                    CreateTime = DateTime.Now,
                 };
                 _context.ClientTopics.Add(newClientTopic);
                 _context.SaveChanges();

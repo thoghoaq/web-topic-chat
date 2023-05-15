@@ -11,6 +11,7 @@
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public int OwnerId { get; set; }
+        public DateTime CreateTime { get; set; }
 
         public virtual Client Owner { get; set; } = null!;
         public virtual ICollection<ClientTopic> ClientTopics { get; set; }

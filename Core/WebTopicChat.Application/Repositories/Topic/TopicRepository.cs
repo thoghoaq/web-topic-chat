@@ -13,7 +13,7 @@ namespace WebTopicChat.Application.Repositories.Topic
 
         public dynamic? GetList()
         {
-            var topics = _context.Topics.Include(e => e.Owner);
+            var topics = _context.Topics.Include(e => e.Owner).OrderByDescending(e => e.CreateTime);
             return topics;
         }
 
@@ -22,7 +22,8 @@ namespace WebTopicChat.Application.Repositories.Topic
             var  entity= _context.Topics.Add(new Domain.Entities.Topic
             {
                 Name = name,
-                OwnerId = ownerId
+                OwnerId = ownerId,
+                CreateTime = DateTime.Now,
             });
             _context.SaveChanges();
             return entity.Entity;
