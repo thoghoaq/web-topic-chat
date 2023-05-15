@@ -42,7 +42,9 @@ namespace WebTopicChat.ServerAPI.Controllers
         [HttpPost("{topicId}/send")]
         public IActionResult SendMessage(MessageRequestModel messageRequestModel)
         {
-            var result = _messageService.SendMessage(messageRequestModel.topicId, messageRequestModel.clientId, messageRequestModel.Content);
+            // Get topicId from route value
+            var topicId_Route = Convert.ToInt32(HttpContext.GetRouteValue("topicId").ToString());
+            var result = _messageService.SendMessage(topicId_Route, messageRequestModel.clientId, messageRequestModel.Content);
             return CreatedAtAction("SendMessage", result);
         }
     }

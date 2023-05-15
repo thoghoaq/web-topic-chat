@@ -15,7 +15,7 @@ namespace WebTopicChat.Infrastructure.Services.Message
             _mapper = mapper;
         }
 
-        public MessageResponseModel SendMessage(int topicId, int clientId, string Msg)
+        public MessageRequestModel SendMessage(int topicId, int clientId, string Msg)
         {
             var result = _MessageRepository.SendMessage(topicId, clientId, Msg);
             return _mapper.Map<MessageRequestModel>(result);
