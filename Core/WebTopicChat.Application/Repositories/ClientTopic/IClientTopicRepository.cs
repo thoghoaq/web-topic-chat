@@ -4,6 +4,6 @@
     {
         dynamic? AddClientTopic(int clientId, int topicId);
         bool RemoveClientTopic(int clientId, int topicId);
-        dynamic? GetClientTopic();
+        public dynamic? GetClientTopic(int clientId, int topicId);
     }
 }

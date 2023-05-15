@@ -18,7 +18,7 @@ namespace WebTopicChat.ServerAPI.Controllers
         }
 
         [HttpPost("sub")]
-        public IActionResult SubscribePost(SubViewModel subView)
+        public IActionResult SubscribePost([FromBody] SubViewModel subView)
         {
             var result = _subscribeService.Subscribe(subView.ClientId, subView.TopicId);
             if (result != null)

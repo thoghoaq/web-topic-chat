@@ -11,14 +11,14 @@ namespace WebTopicChat.Application.Repositories.ClientTopic
             _context = context;
         }
 
-        public dynamic? GetClientTopic()
+        public dynamic? GetClientTopic(int clientId, int topicId)
         {
-            return _context.ClientTopics;
+            return _context.ClientTopics.Where(x => x.ClientId == clientId && x.TopicId == topicId).SingleOrDefault();
         }
 
         public dynamic? AddClientTopic(int clientId, int topicId)
         { 
-            if (_context.ClientTopics.SingleOrDefault(x => x.ClientId == clientId && x.TopicId == topicId) != null)
+            if (GetClientTopic(clientId, topicId) != null)
             {
                 return null;
             }
