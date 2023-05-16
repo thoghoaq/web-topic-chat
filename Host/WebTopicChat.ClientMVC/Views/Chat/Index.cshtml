@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Message>
+
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var userId = HttpContextAccessor.HttpContext.Session.GetInt32("UserID");
+}
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebTopicChat.ClientMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/topiccontent.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebTopicChat.ClientMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <section class="gradient-custom">
+        <div class="container py-5">
+            <div class="row">
+                <div class="topic">Topic 1</div>
+                <div class="col-md-12 col-lg-12 col-xl-12 mt-2 scroll">
+                    <ul class="list-unstyled text-white">
+                        @foreach (var message in Model)
+                        {
+                            <li class="d-flex @GetChatAlignment(message.SenderId == userId) mb-4">
+                                <div class="card mask-custom text-start w-75">
+                                    <div class="card-header d-flex justify-content-between p-3"
+                                         style="border-bottom: 1px solid rgba(255,255,255,.3);">
+                                        <p class="fw-bold mb-0">@message.SenderName</p>
+                                        <p class="text-light small mb-0"><i class="far fa-clock"></i>@message.CreateTime</p>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="mb-0">
+                                            @message.Content
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <form action="/Chat/SendMessage" method="post">
+                    <div class="row">
+                        <input type="hidden" name="topicIdParam" value="@ViewBag.TopicId">
+                        <textarea class="form-control mt-3 mb-3" id="textAreaExample3" rows="4" name="message" placeholder="Message"></textarea>
+                        <button type="submit" class="btn btn-light btn-lg btn-rounded w-auto">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+@functions {
+    string GetChatAlignment(bool isMyChat)
+    {
+        return isMyChat ? "justify-content-end" : "justify-content-start";
+    }
+}
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        var chatContainer = document.querySelector('.scroll');
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var textarea = document.getElementById('textAreaExample3');
+
+        textarea.addEventListener('keydown', function (event) {
+            if (event.keyCode === 13 && !event.shiftKey) {
+                event.preventDefault(); // Prevent new line
+                document.forms[0].submit(); // Submit the form
+            }
+        });
+    });
+</script>

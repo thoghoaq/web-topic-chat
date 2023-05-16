@@ -98,5 +98,9 @@ namespace WebTopicChat.ClientMVC.Controllers
             return RedirectToAction("GetList", "Topic");
         }
 
+        public IActionResult GoToChat(int id)
+        {
+            return RedirectToAction("Index", "Chat", new {topicId = id});
+        }
     }
 }
