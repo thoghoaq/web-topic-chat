@@ -3,8 +3,8 @@ using WebTopicChat.ClientMVC.Models;
 using System.Text.Json;
 using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Common;
-using Newtonsoft.Json.Linq;
-using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -32,7 +32,7 @@ namespace WebTopicChat.ClientMVC.Controllers
             {
                 PropertyNameCaseInsensitive = true
             };
-            List<TopicViewModel> listTopic = JsonSerializer.Deserialize<List<TopicViewModel>>(data, options);
+            List<TopicViewModel> listTopic = System.Text.Json.JsonSerializer.Deserialize<List<TopicViewModel>>(data, options);
             return View(listTopic);
         }
 
@@ -46,8 +46,38 @@ namespace WebTopicChat.ClientMVC.Controllers
             {
                 PropertyNameCaseInsensitive = true
             };
-            List<Message> listMessage = JsonSerializer.Deserialize<List<Message>>(data, options);
+            List<Message> listMessage = System.Text.Json.JsonSerializer.Deserialize<List<Message>>(data, options);
             return View(listMessage);
+        }
+
+        public async Task<IActionResult> Sub(int id)
+        {
+            apiUrl = ApiUrls.reUrl + "topic/sub";
+            int clientId = (int)HttpContext.Session.GetInt32("UserID");
+            int topicId = id;
+            var data = new { clientId, topicId };
+            var content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var response = await clients.PostAsync(apiUrl, content);
+            return RedirectToAction("GetList", "Topic");
+        }
+
+        public async Task<IActionResult> UnSub(int id)
+        {
+            apiUrl = ApiUrls.reUrl + "topic/unsub";
+            int clientId = (int)HttpContext.Session.GetInt32("UserID");
+
+            var requestBody = new
+            {
+                clientiD = clientId,
+                topicId = id
+            };
+
+            var requestBodyJson = System.Text.Json.JsonSerializer.Serialize(requestBody);
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, apiUrl);
+                
+            request.Content = new StringContent(requestBodyJson, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await clients.SendAsync(request);
+            return RedirectToAction("GetList", "Topic");
         }
 
     }

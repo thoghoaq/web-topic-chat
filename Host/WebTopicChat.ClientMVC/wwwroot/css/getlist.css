@@ -17,3 +17,19 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+#topicname-input-container {
+    display: none;
+}
+
+#topicname-input-container.active {
+    display: block;
+}
+
+#submit-btn {
+    margin-top: 10px;
+}
+
+.font20 {
+    font-size: 20px;
+}

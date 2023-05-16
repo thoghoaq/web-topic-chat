@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/getlist.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebTopicChat.ClientMVC.styles.css" asp-append-version="true" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="container-fluid">
@@ -40,17 +41,23 @@
                                     <td>
                                         @if (topic.IsSubcribed == true)
                                         {
-                                        @Html.ActionLink("Join", "GetMessage", new { id = topic.Id }) 
+                                            <button class="btn btn-light text-black text-decoration-underline" onclick="window.location.href='@Url.Action("GetMessage", new { id = topic.Id })'">Join</button>
                                         }
                                     </td>
+                                    @*<td>
+                                        @if (topic.IsSubcribed == true)
+                                        {
+                                        @Html.ActionLink("Join", "GetMessage", new { id = topic.Id }) 
+                                        }
+                                    </td>*@
                                     <td>
                                         @if (topic.IsSubcribed == false)
                                         {
-                                            <button asp-action="" class="join-btn bg-primary">Sub</button>
+                                            <button class="join-btn bg-primary" onclick="window.location.href='@Url.Action("Sub", new { id = topic.Id })'">Sub</button>
                                         }
                                         else
                                         {
-                                            <button asp-action="" class="join-btn bg-danger">UnSub</button>
+                                            <button class="join-btn bg-danger" onclick="window.location.href='@Url.Action("UnSub", new { id = topic.Id })'">UnSub</button>
                                         }
                                     </td>
                                 </tr>
@@ -59,9 +66,34 @@
                     </table>
                 }
                 <div class="text-white">
-                    If you don’t subcribe any topic?  <a href="#"> Create new </a>
+                    <div class="align-items-center font20">
+                        If you don’t subcribe any topic?
+                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalForm">
+                            Create new
+                        </button>
+                    </div>
                 </div>
                 
+                <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-center text-black" id="exampleModalLabel">NEW TOPIC</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body"> 
+                                <form>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control" placeholder="Topic Name" />
+                                    </div>
+                                    <div class="modal-footer d-block">
+                                        <button type="submit" class="btn btn-warning float-end">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
