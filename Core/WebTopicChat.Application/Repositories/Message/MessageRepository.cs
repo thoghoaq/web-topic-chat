@@ -33,7 +33,7 @@ namespace WebTopicChat.Application.Repositories.Message
                 .Include(e => e.Topic)
                 .Include(e=>e.Sender)
                 .OrderBy(e => e.CreateTime);
-            return messages;
+            return messages.ToList();
         }
 
         public Domain.Entities.Message? GetMessage(int id)
