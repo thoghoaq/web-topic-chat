@@ -5,8 +5,6 @@ using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Common;
 using Newtonsoft.Json;
 using System.Text;
-using Newtonsoft.Json.Linq;
-using WebTopicChat.Domain.Entities;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -98,9 +96,9 @@ namespace WebTopicChat.ClientMVC.Controllers
             return RedirectToAction("GetList", "Topic");
         }
 
-        public IActionResult GoToChat(int id)
+        public IActionResult GoToChat(int id, string topicNameParam)
         {
-            return RedirectToAction("Index", "Chat", new {topicId = id});
+            return RedirectToAction("InitialChatRoom", "Chat", new {topicId = id, topicName = topicNameParam });
         }
     }
 }

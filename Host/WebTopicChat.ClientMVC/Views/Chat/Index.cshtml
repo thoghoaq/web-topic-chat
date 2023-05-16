@@ -24,7 +24,14 @@
     <section class="gradient-custom">
         <div class="container py-5">
             <div class="row">
-                <div class="topic">Topic 1</div>
+                <div class="row">
+                    <div class="col-md-9 text-left">
+                        <div class="topic">Topic: @ViewBag.TopicName</div>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <a href="/Topic/GetList" class="btn btn-light btn-lg btn-rounded w-auto">Back to Home</a>
+                    </div>
+                </div>
                 <div class="col-md-12 col-lg-12 col-xl-12 mt-2 scroll">
                     <ul class="list-unstyled text-white">
                         @foreach (var message in Model)
