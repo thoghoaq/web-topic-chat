@@ -4,7 +4,7 @@ using WebTopicChat.Domain.Entities;
 
 namespace UnitTest
 {
-    public class MeesageTest
+    public class MessageTest
     {
         [Theory]
         [InlineData(11,2,"hello")]

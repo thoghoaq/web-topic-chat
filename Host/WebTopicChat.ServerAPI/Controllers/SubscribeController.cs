@@ -28,11 +28,11 @@ namespace WebTopicChat.ServerAPI.Controllers
         }
 
         [HttpDelete("unsub")]
-        public IActionResult UnsubscribePut(SubViewModel subView)
+        public IActionResult UnsubscribeDelete(SubViewModel subView)
         {
             var result = _subscribeService.Unsubscribe(subView.ClientId, subView.TopicId);
             if (result == true)
-                return NoContent();
+                return CreatedAtAction("UnsubscribeDelete", "Unsubscribe Successfully!");
             else
                 return NotFound();
         }
