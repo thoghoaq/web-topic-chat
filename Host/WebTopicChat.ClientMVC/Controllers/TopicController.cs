@@ -5,6 +5,8 @@ using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Common;
 using Newtonsoft.Json;
 using System.Text;
+using Newtonsoft.Json.Linq;
+using WebTopicChat.Domain.Entities;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -46,7 +48,7 @@ namespace WebTopicChat.ClientMVC.Controllers
             {
                 PropertyNameCaseInsensitive = true
             };
-            List<Message> listMessage = System.Text.Json.JsonSerializer.Deserialize<List<Message>>(data, options);
+            List<Models.Message> listMessage = System.Text.Json.JsonSerializer.Deserialize<List<Models.Message>>(data, options);
             return View(listMessage);
         }
 
@@ -77,6 +79,22 @@ namespace WebTopicChat.ClientMVC.Controllers
                 
             request.Content = new StringContent(requestBodyJson, Encoding.UTF8, "application/json");
             HttpResponseMessage response = await clients.SendAsync(request);
+            return RedirectToAction("GetList", "Topic");
+        }
+
+        public async Task<IActionResult> Create(string topicName)
+        {
+            apiUrl = ApiUrls.reUrl + "topic";
+            int clientId = (int)HttpContext.Session.GetInt32("UserID");
+
+            var requestBody = new
+            {
+                name = topicName,
+                ownerId = clientId
+            };
+
+            var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
+            var response = await clients.PostAsync(apiUrl, content);
             return RedirectToAction("GetList", "Topic");
         }
 
