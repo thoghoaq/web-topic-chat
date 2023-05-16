@@ -1,13 +1,13 @@
 ﻿using WebTopicChat.Application.Context;
 using WebTopicChat.Application.Repositories.ClientTopic;
 
-namespace UnitTest
+namespace Test.UnitTest
 {
     public class SubscribeTest
     {
         [Theory]
-        [InlineData(3,1)]
-        [InlineData(1,3)]
+        [InlineData(3, 1)]
+        [InlineData(1, 3)]
         public void SubTestSuccess(int clientId, int topicId)
         {
             TopicChatContext topicChatContext = new TopicChatContext();
