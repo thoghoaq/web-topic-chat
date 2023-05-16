@@ -41,7 +41,7 @@
                                     <td>
                                         @if (topic.IsSubcribed == true)
                                         {
-                                            <button class="btn btn-light text-black text-decoration-underline" onclick="window.location.href='@Url.Action("GetMessage", new { id = topic.Id })'">Join</button>
+                                            <button class="btn btn-light text-black text-decoration-underline" onclick="window.location.href='@Url.Action("GoToChat", new { id = topic.Id })'">Join</button>
                                         }
                                     </td>
                                     @*<td>
