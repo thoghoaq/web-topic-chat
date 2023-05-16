@@ -34,6 +34,7 @@ namespace WebTopicChat.Application.Repositories.Topic
                 TopicId = entity.Entity.Id
             });
             _context.SaveChanges();
+            entity.Entity.Owner = _context.Clients.FirstOrDefault(e => e.Id.Equals(ownerId));
             return entity.Entity;
         }
     }

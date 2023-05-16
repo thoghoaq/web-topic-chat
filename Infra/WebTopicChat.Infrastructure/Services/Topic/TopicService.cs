@@ -32,7 +32,10 @@ namespace WebTopicChat.Infrastructure.Services.Topic
 
         public TopicResponseModel AddTopic(string name, int ownerId)
         {
-            return _mapper.Map<TopicResponseModel>(_topicRepository.AddTopic(name, ownerId));
+
+            var result = _mapper.Map<TopicResponseModel>(_topicRepository.AddTopic(name, ownerId));
+            result.IsSubcribed = true;
+            return result;
         }
 
         public MessageResponseModel SendMessage(int id, SendMessageRequestModel requestModel)
