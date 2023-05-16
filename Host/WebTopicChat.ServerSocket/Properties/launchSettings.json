@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "WebTopicChat.ServerSocket": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:53411;http://localhost:53414"
+    }
+  }
+}
