@@ -4,6 +4,8 @@ using System.Text;
 using WebTopicChat.ClientMVC.Common;
 using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Models;
+using WebTopicChat.ClientMVC.ClientSocketHandler;
+using System.Net.Sockets;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -19,11 +21,22 @@ namespace WebTopicChat.ClientMVC.Controllers
             clients.DefaultRequestHeaders.Accept.Add(contentType);
         }
 
-        public async Task<IActionResult> Index(int topicId)
+        public async Task<IActionResult> Index(int topicId, string topicName)
         {
             var listMessage = await GetMessage(topicId);
             ViewBag.TopicId = topicId;
+            ViewBag.TopicName = topicName;
             return View(listMessage);
+        }
+
+        public IActionResult InitialChatRoom(int topicId, string topicName)
+        {
+            // Start client socket.
+            ClientSocket clientSocket = new(new Socket
+                        (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
+            clientSocket.ConnectToServer();
+            clientSocket.RequestLoop();
+            return RedirectToAction("Index", "Chat", new { topicId, topicName });
         }
 
         public async Task<List<Message>?> GetMessage(int id)
