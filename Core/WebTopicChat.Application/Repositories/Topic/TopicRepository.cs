@@ -28,6 +28,12 @@ namespace WebTopicChat.Application.Repositories.Topic
                 CreateTime = DateTime.Now,
             });
             _context.SaveChanges();
+            _context.ClientTopics.Add(new Domain.Entities.ClientTopic
+            {
+                ClientId = ownerId,
+                TopicId = entity.Entity.Id
+            });
+            _context.SaveChanges();
             return entity.Entity;
         }
     }
