@@ -11,12 +11,13 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WebTopicChat.ClientMVC.styles.css" asp-append-version="true" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
 </head>
-<body>
-    <div class="col-md-12 col-lg-12 col-xl-12 text-white text-center center">
+<body class="p-4">
+    <div class="col-md-12 col-lg-12 col-xl-12 text-white text-center mt-5">
         WELCOME TO <br /> OUR TOPIC-CHAT WEB
     </div>
-    <form asp-action="Auth" method="post">
+    <form class="mt-5 mb-4" asp-action="Auth" method="post">
         <h5 class="text-center">
             @if (ViewBag.ErrorMessage != null)
             {
@@ -31,5 +32,41 @@
         </div>
         <button class="form-control mr-sm-2 m-1 f" style="width:100px" type="submit">Login</button>
     </form>
+    <div>
+        <div class="text-center text-white mt-0">
+            <div class="font">
+                Don't have an account?
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalForm"> 
+                    Sign up
+                </a>
+            </div>
+            <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center text-black" id="exampleModalLabel">SIGN IN</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form asp-action="Regist" method="post">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="userName" placeholder="Your username" />
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="password" placeholder="Your password" />
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="displayName" placeholder="Your displayname" />
+                                </div>
+                                <div class="modal-footer d-block">
+                                    <button type="submit" class="btn btn-warning float-end">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
