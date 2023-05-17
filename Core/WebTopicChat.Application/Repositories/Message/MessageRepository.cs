@@ -11,18 +11,24 @@ namespace WebTopicChat.Application.Repositories.Message
             _context = context;
         }
 
-        public Domain.Entities.Message CreateMessage(int topicId,int senderId, string content)
+        public Domain.Entities.Message? CreateMessage(int topicId,int senderId, string content)
         {
-            var message = new Domain.Entities.Message
+            try
             {
-                Content = content,
-                SenderId = senderId,
-                CreateTime = DateTime.Now,
-                TopicId = topicId,
-            };
-            var response = _context.Messages.Add(message);
-            _context.SaveChanges();
-            return response.Entity;
+                var message = new Domain.Entities.Message
+                {
+                    Content = content,
+                    SenderId = senderId,
+                    CreateTime = DateTime.Now,
+                    TopicId = topicId,
+                };
+                var response = _context.Messages.Add(message);
+                _context.SaveChanges();
+                return response.Entity;
+            } catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public dynamic? GetListOfTopic(int topicId)

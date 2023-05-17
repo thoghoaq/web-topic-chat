@@ -3,8 +3,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 
-// Context: Room is as topicId, when client open a topic, client will connect to this topic room
-
 namespace MultiServer
 {
     public class Program
@@ -20,7 +18,7 @@ namespace MultiServer
         {
             Console.Title = "Server Socket";
             SetupServer();
-            Console.ReadLine(); // When we press enter close everything
+            Console.ReadLine();
             CloseAllSockets();
         }
 
@@ -33,10 +31,6 @@ namespace MultiServer
             Console.WriteLine("Server setup complete");
         }
 
-        /// <summary>
-        /// Close all connected client (we do not need to shutdown the server socket as its connections
-        /// are already closed with the clients).
-        /// </summary>
         public static void CloseAllSockets()
         {
             foreach (Socket socket in clientSockets)
@@ -56,7 +50,7 @@ namespace MultiServer
             {
                 socket = serverSocket.EndAccept(AR);
             }
-            catch (ObjectDisposedException) // I cannot seem to avoid this (on exit when properly closing sockets)
+            catch (ObjectDisposedException) 
             {
                 return;
             }
@@ -78,7 +72,6 @@ namespace MultiServer
             catch (SocketException)
             {
                 Console.WriteLine($"Client {clientSockets.IndexOf(current)} forcefully disconnected");
-                // Don't shutdown because the socket may be disposed and its disconnected anyway.
                 current.Close();
                 clientSockets.Remove(current);
                 return;
@@ -89,9 +82,8 @@ namespace MultiServer
             string text = Encoding.ASCII.GetString(recBuf.TakeWhile(e => e != byte.MinValue).ToArray()).Trim();
             Console.WriteLine($"Received Text from client {clientSockets.IndexOf(current)}: " + text);
 
-            if (text.ToLower() == "exit") // Client wants to exit gracefully
+            if (text.ToLower() == "exit")
             {
-                // Always Shutdown before closing
                 current.Shutdown(SocketShutdown.Both);
                 current.Close();
                 clientSockets.Remove(current);
@@ -112,16 +104,15 @@ namespace MultiServer
                 }
                 else if (text.StartsWith("/send "))
                 {
-                    string pattern = @"""([^""]+)""\s+""([^""]+)"""; // Matches two quoted strings
+                    string pattern = @"""([^""]+)""\s+""([^""]+)""";
 
                     Match match = Regex.Match(text, pattern);
 
                     if (match.Success)
                     {
-                        string arg1 = match.Groups[1].Value; // Topic
-                        string arg2 = match.Groups[2].Value; // Message
+                        string arg1 = match.Groups[1].Value; 
+                        string arg2 = match.Groups[2].Value; 
 
-                        // Send message to all client subcribe topic
                         var listClient = topicClients.Single(e => e.Key == int.Parse(arg1)).Value;
                         foreach (Socket client in listClient)
                         {

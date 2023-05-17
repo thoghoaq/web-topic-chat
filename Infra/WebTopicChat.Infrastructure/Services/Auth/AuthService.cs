@@ -24,13 +24,13 @@ namespace WebTopicChat.Infrastructure.Services.Auth
             if (client == null)
             {
                 return new KeyValuePair<MessageViewModel, LoginViewModel?>(
-                new MessageViewModel { StatusCode = HttpStatusCode.Unauthorized, Message = "Wrong user name or password" }, 
-                null
+                    new MessageViewModel { StatusCode = HttpStatusCode.Unauthorized, Message = "Wrong user name or password" }, 
+                    null
                 );
             }
             return new KeyValuePair<MessageViewModel, LoginViewModel?>(
-                new MessageViewModel { StatusCode = HttpStatusCode.OK, Message = "Authenticated" },
-                _mapper.Map<LoginViewModel>(client)
+                    new MessageViewModel { StatusCode = HttpStatusCode.OK, Message = "Authenticated" },
+                    _mapper.Map<LoginViewModel>(client)
                 );
         }
 

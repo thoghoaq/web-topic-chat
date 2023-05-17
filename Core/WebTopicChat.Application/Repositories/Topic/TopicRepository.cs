@@ -21,21 +21,27 @@ namespace WebTopicChat.Application.Repositories.Topic
 
         public Domain.Entities.Topic AddTopic(string name, int ownerId)
         {
-            var  entity= _context.Topics.Add(new Domain.Entities.Topic
+            try
             {
-                Name = name,
-                OwnerId = ownerId,
-                CreateTime = DateTime.Now,
-            });
-            _context.SaveChanges();
-            _context.ClientTopics.Add(new Domain.Entities.ClientTopic
+                var entity = _context.Topics.Add(new Domain.Entities.Topic
+                {
+                    Name = name,
+                    OwnerId = ownerId,
+                    CreateTime = DateTime.Now,
+                });
+                _context.SaveChanges();
+                _context.ClientTopics.Add(new Domain.Entities.ClientTopic
+                {
+                    ClientId = ownerId,
+                    TopicId = entity.Entity.Id
+                });
+                _context.SaveChanges();
+                entity.Entity.Owner = _context.Clients.FirstOrDefault(e => e.Id.Equals(ownerId));
+                return entity.Entity;
+            }catch (Exception ex)
             {
-                ClientId = ownerId,
-                TopicId = entity.Entity.Id
-            });
-            _context.SaveChanges();
-            entity.Entity.Owner = _context.Clients.FirstOrDefault(e => e.Id.Equals(ownerId));
-            return entity.Entity;
+                return null;
+            }
         }
     }
 }

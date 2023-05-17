@@ -17,7 +17,6 @@ namespace WebTopicChat.Infrastructure.Extensions.AutoMapper.Config
                 mc.ConfigAuthModule();
                 mc.ConfigTopicModule();
                 mc.ConfigMessageModule();
-                //mc.ConfigMessageRequestModule();
                 mc.ConfigSubModule();
             });
             IMapper mapper = mapperConfiguration.CreateMapper();

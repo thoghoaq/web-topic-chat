@@ -11,16 +11,24 @@ namespace WebTopicChat.Application.Repositories.Client
             _context = context;
         }
 
-        public Domain.Entities.Client Create(string userName, string password, string displayName)
+        public Domain.Entities.Client? Create(string userName, string password, string displayName)
         {
-            var entity = new Domain.Entities.Client(){
-                UserName = userName,
-                Password = password,
-                DisplayName = displayName
-            };
-            _context.Clients.Add(entity);
-            _context.SaveChanges();
-            return entity;
+            try
+            {
+                var entity = new Domain.Entities.Client()
+                {
+                    UserName = userName,
+                    Password = password,
+                    DisplayName = displayName
+                };
+                _context.Clients.Add(entity);
+                _context.SaveChanges();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public dynamic? Get(string userName, string password)
