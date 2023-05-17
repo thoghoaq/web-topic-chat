@@ -25,7 +25,7 @@ namespace WebTopicChat.Application.Repositories.Client
                 _context.SaveChanges();
                 return entity;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
