@@ -4,8 +4,6 @@ using System.Text;
 using WebTopicChat.ClientMVC.Common;
 using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Models;
-using WebTopicChat.ClientMVC.ClientSocketHandler;
-using System.Net.Sockets;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebTopicChat.Application.Context;
+using WebTopicChat.Domain.Entities;
 
 namespace WebTopicChat.Application.Repositories.Topic
 {
@@ -15,11 +16,12 @@ namespace WebTopicChat.Application.Repositories.Topic
         {
             var topics = _context.Topics
                 .Include(e => e.ClientTopics)
-                .Include(e => e.Owner).OrderByDescending(e => e.CreateTime);
+                .Include(e => e.Owner)
+                .OrderByDescending(e => e.CreateTime);
             return topics.ToList();
         }
 
-        public Domain.Entities.Topic AddTopic(string name, int ownerId)
+        public Domain.Entities.Topic? AddTopic(string name, int ownerId)
         {
             try
             {
@@ -36,9 +38,9 @@ namespace WebTopicChat.Application.Repositories.Topic
                     TopicId = entity.Entity.Id
                 });
                 _context.SaveChanges();
-                entity.Entity.Owner = _context.Clients.FirstOrDefault(e => e.Id.Equals(ownerId));
+                entity.Entity.Owner = _context.Clients.First(e => e.Id.Equals(ownerId));
                 return entity.Entity;
-            }catch (Exception ex)
+            }catch
             {
                 return null;
             }

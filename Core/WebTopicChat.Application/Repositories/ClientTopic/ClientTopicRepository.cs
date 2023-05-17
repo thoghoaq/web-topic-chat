@@ -13,7 +13,7 @@ namespace WebTopicChat.Application.Repositories.ClientTopic
 
         public dynamic? GetClientTopic(int clientId, int topicId)
         {
-            return _context.ClientTopics.Where(x => x.ClientId == clientId && x.TopicId == topicId).SingleOrDefault();
+            return _context.ClientTopics.Find(topicId, clientId);
         }
 
         public dynamic? AddClientTopic(int clientId, int topicId)
@@ -36,7 +36,7 @@ namespace WebTopicChat.Application.Repositories.ClientTopic
 
                     return newClientTopic;
                 }
-            } catch (Exception ex)
+            } catch
             {
                 return null;
             }
@@ -46,9 +46,7 @@ namespace WebTopicChat.Application.Repositories.ClientTopic
         {
             try
             {
-                var deleteClientTopic = _context.ClientTopics
-                    .Where(x => x.TopicId == topicId && x.ClientId == clientId)
-                    .SingleOrDefault();
+                var deleteClientTopic = _context.ClientTopics.Find(topicId, clientId);
                 if (deleteClientTopic != null)
                 {
                     _context.ClientTopics.Remove(deleteClientTopic);
@@ -60,7 +58,7 @@ namespace WebTopicChat.Application.Repositories.ClientTopic
                     return false; 
                 }
             } 
-            catch(Exception)
+            catch
             { 
                 return false; 
             }
