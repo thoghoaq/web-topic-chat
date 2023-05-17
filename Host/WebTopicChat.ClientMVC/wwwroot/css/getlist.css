@@ -5,12 +5,11 @@
     background-position: center center;
     background-attachment: fixed;
     font-family: Courier New, Courier, monospace;
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .join-btn {
     display: inline-block;
-    margin-left: 10px;
     padding: 5px 10px;
     background-color: #007bff;
     color: #fff;
@@ -25,4 +24,8 @@
 a {
     font-weight: bold;
     text-decoration: none;
+}
+
+.btn-custom :hover {
+    cursor: pointer
 }

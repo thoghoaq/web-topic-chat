@@ -1,6 +1,13 @@
-﻿@model IEnumerable<TopicViewModel>
+﻿@model List<TopicViewModel>
 @{
     Layout = null;
+}
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var userName = HttpContextAccessor.HttpContext.Session.GetString("displayName");
+    var index = 0;
 }
 <!DOCTYPE html>
 <html>
@@ -16,6 +23,16 @@
 <body>
     <div class="container-fluid w-75">
         <div class="row">
+            <form class="text-end mt-3" method="post" asp-controller="Account" asp-action="Logout">
+                <h2 class="text-white fw-bold d-inline">@userName</h2>
+                <button type="submit" class="btn btn-outline-danger btn-custom">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"></path>
+                        <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"></path>
+                    </svg>
+                    Logout
+                </button>
+            </form>
             <div class="col-12 col-md-12 col-xl-12 text-center center">
                 @if (Model == null || !Model.Any())
                 {
@@ -26,8 +43,9 @@
                     <table class="table text-white border-1 m-3">
                         <thead>
                             <tr>
-                                <th>Topic Name</th>
-                                <th>Owner Name</th>
+                                <th>No.</th>
+                                <th class="text-start">Topic Name</th>
+                                <th class="text-start w-25">Owner Name</th>
                                 <th></th>
                                 <th></th>
                             </tr>
@@ -35,30 +53,25 @@
                         <tbody>
                             @foreach (var topic in Model)
                             {
+                                index++;
                                 <tr>
-                                    <td>@topic.Name</td>
-                                    <td>@topic.OwnerName</td>
-                                    <td>
+                                    <td >@index</td>
+                                    <td class="text-start w-50">@topic.Name</td>
+                                    <td class="text-start w-25">@topic.OwnerName</td>
                                     <td>
                                         @if (topic.IsSubcribed == true)
                                         {
-                                            <button class="btn btn-light text-black text-decoration-underline" onclick="window.location.href='@Url.Action("GoToChat", new { id = topic.Id, topicNameParam = topic.Name })'">Join</button>
+                                            <button class="join-btn font20 bg-light text-black w-100" onclick="window.location.href='@Url.Action("GoToChat", new { id = topic.Id, topicNameParam = topic.Name })'">Join</button>
                                         }
                                     </td>
-                                    @*<td>
-                                        @if (topic.IsSubcribed == true)
-                                        {
-                                        @Html.ActionLink("Join", "GetMessage", new { id = topic.Id }) 
-                                        }
-                                    </td>*@
                                     <td>
                                         @if (topic.IsSubcribed == false)
                                         {
-                                            <button class="join-btn bg-primary p-1 font20" onclick="window.location.href='@Url.Action("Sub", new { id = topic.Id })'">Sub</button>
+                                            <button class="join-btn bg-primary font20 w-100" onclick="window.location.href='@Url.Action("Sub", new { id = topic.Id })'">Sub</button>
                                         }
                                         else
                                         {
-                                            <button class="join-btn bg-danger p-1 font20" onclick="window.location.href='@Url.Action("UnSub", new { id = topic.Id })'">UnSub</button>
+                                            <button class="join-btn bg-danger font20 w-100" onclick="window.location.href='@Url.Action("UnSub", new { id = topic.Id })'">UnSub</button>
                                         }
                                     </td>
                                 </tr>

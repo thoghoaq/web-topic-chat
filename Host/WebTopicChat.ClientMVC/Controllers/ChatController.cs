@@ -23,6 +23,12 @@ namespace WebTopicChat.ClientMVC.Controllers
 
         public async Task<IActionResult> Index(int topicId, string topicName)
         {
+            // get the id from session
+            var userid = HttpContext.Session.GetInt32("UserID");
+            if (userid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             var listMessage = await GetMessage(topicId);
             ViewBag.TopicId = topicId;
             ViewBag.TopicName = topicName;
@@ -31,6 +37,12 @@ namespace WebTopicChat.ClientMVC.Controllers
 
         public IActionResult InitialChatRoom(int topicId, string topicName)
         {
+            // get the id from session
+            var userid = HttpContext.Session.GetInt32("UserID");
+            if (userid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             // Start client socket.
             ClientSocket clientSocket = new(new Socket
                         (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));

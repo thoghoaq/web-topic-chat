@@ -22,29 +22,28 @@
 </head>
 <body>
     <section class="gradient-custom">
-        <div class="container py-5">
-            <div class="row">
-                <div class="row mt-1 mb-3">
+        <div class=" py-5 px-5">
+                <div class="row m-0 mt-1 mb-5 justify-content-center">
                     <div class="col-md-9 text-left">
                         <div class="topic text-white fw-bold">Topic: @ViewBag.TopicName</div>
                     </div>
-                    <div class="col-md-3 text-end">
+                    <div class="col-md-3 text-end p-0">
                         <a href="/Topic/GetList" class="btn btn-light btn-lg btn-rounded w-auto">Back to Home</a>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-12 col-xl-12 mt-2 scroll h-100 mb-0">
+                <div class="col-md-12 col-lg-12 col-xl-12 scroll mb-0">
                     <ul class="list-unstyled text-white">
                         @foreach (var message in Model)
                         {
                             <li class="d-flex @GetChatAlignment(message.SenderId == userId) mb-4">
-                                <div class="card mask-custom text-start w-75">
-                                    <div class="card-header d-flex justify-content-between p-3"
+                            <div class="card mask-custom text-start @GetDecorMyChat(message.SenderId == userId)">
+                                <div class="card-header d-flex justify-content-between align-items-center p-3"
                                          style="border-bottom: 1px solid rgba(255,255,255,.3);">
-                                        <p class="fw-bold mb-0">@message.SenderName</p>
+                                        <p class="fw-bold mb-0 pe-5">@message.SenderName</p>
                                         <p class="text-light small mb-0"><i class="far fa-clock"></i>@message.CreateTime</p>
                                     </div>
                                     <div class="card-body @TextAlignment(message.SenderId == userId)">
-                                        <p class="mb-0">
+                                    <p class="mb-0 align-left">
                                             @message.Content
                                         </p>
                                     </div>
@@ -54,19 +53,18 @@
                     </ul>
                 </div>
                 <form action="/Chat/SendMessage" method="post">
-                    <div class="row chat-box w-100">
-                        <div class="col-md-10 col-lg-10 col-xl-10 mb-2">
+                    <div class="row chat-box w-100 px-5 m-0 justify-content-between mb-2">
+                        <div class="col-md-9 col-lg-9 col-xl-9 p-0">
                             <input type="hidden" name="topicIdParam" value="@ViewBag.TopicId">
                             <input type="hidden" name="topicNameParam" value="@ViewBag.TopicName">
-                            <textarea class="form-control mt-3 mb-3 w-100" id="textAreaExample3" rows="4" name="message" placeholder="Message"></textarea>
+                            <textarea class="form-control mt-3 mb-3 w-100" id="textAreaExample3" rows="4" name="message" placeholder="Type your message..."></textarea>
                         </div>
-                        <div class="col-md-2 col-lg-2 col-xl-2 mt-2 d-flex justify-content-center align-items-center">
+                        <div class="col-md-2 col-lg-2 col-xl-2 d-flex p-0 mt-0 justify-content-center align-items-center ">
                             <button type="submit" class="btn btn-light btn-lg btn-rounded w-100 h-50 text-center">Send</button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
     </section>
 </body>
 </html>
@@ -75,6 +73,11 @@
     string GetChatAlignment(bool isMyChat)
     {
         return isMyChat ? "justify-content-end" : "justify-content-start";
+    }
+
+    string GetDecorMyChat (bool isMyChat)
+    {
+        return isMyChat ? "bg-custom" : "bg-normal";
     }
 
     string TextAlignment(bool isMyChat)

@@ -46,9 +46,10 @@ namespace WebTopicChat.ClientMVC.Controllers
                 // extract the id from the JSON response
                 var json = JObject.Parse(result);
                 var userid = json["id"].Value<int>();
-
+                var displayName = json["displayName"].Value<string>();
                 // store the id in session
                 HttpContext.Session.SetInt32("UserID", userid);
+                HttpContext.Session.SetString("displayName", displayName);
                 return RedirectToAction("GetList", "Topic");
             }
             else

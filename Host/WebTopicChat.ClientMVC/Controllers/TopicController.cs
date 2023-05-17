@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using WebTopicChat.ClientMVC.Common;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebTopicChat.ClientMVC.Controllers
 {
@@ -24,6 +25,10 @@ namespace WebTopicChat.ClientMVC.Controllers
         {
             // get the id from session
             var userid = HttpContext.Session.GetInt32("UserID");
+            if (userid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             apiUrl = ApiUrls.reUrl + $"topic?clientId={userid}";
             HttpResponseMessage response = await clients.GetAsync(apiUrl);

@@ -3,27 +3,27 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-
+    font-family: Courier New, Courier, monospace;
 }
 
 .mask-custom {
+    display: flex;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 2em;
     backdrop-filter: blur(15px);
     border: 2px solid rgba(255, 255, 255, 0.05);
     background-clip: padding-box;
     box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    max-width: 75%;
 }
 
 .topic {
     margin-top: 0;
-    margin-bottom: 10px;
-    font-family: Courier New, Courier, monospace;
     font-size: 30px;
 }
 
 .scroll {
-    max-height: 400px;
+    max-height: 600px;
     overflow-y: scroll;
 }
 
@@ -35,7 +35,16 @@
     position: fixed;
     bottom: 0;
     right: 0;
-    padding-left: 60px;
-    padding-right: 80px;
 }
 
+.bg-custom {
+    background-color: #4C3D3D;
+}
+
+.bg-normal {
+    background-color: grey;
+}
+
+.align-left {
+    text-align: left !important;
+}
