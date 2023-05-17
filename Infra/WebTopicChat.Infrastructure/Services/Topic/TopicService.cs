@@ -25,7 +25,8 @@ namespace WebTopicChat.Infrastructure.Services.Topic
             var result = _mapper.Map<List<TopicResponseModel>>(listTopic);
             foreach (var topic in result)
             {
-                topic.IsSubcribed = listTopic.Any(e => e.ClientTopics.Any(e => e.ClientId.Equals(clientId) && e.TopicId.Equals(topic.Id)));
+                topic.IsSubcribed = listTopic.Any(e => e.ClientTopics
+                    .Any(e => e.ClientId.Equals(clientId) && e.TopicId.Equals(topic.Id)));
             }
             return result;
         }

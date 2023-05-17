@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using WebTopicChat.Domain.DTOs.View.Sub;
-using WebTopicChat.Infrastructure;
 using WebTopicChat.Infrastructure.Services.Sub;
 
 namespace WebTopicChat.ServerAPI.Controllers

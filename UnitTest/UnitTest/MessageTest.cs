@@ -24,7 +24,6 @@ namespace Test.UnitTest
         [Theory]
         [InlineData(1, 7)]
         [InlineData(2, 0)]
-        //[InlineData(3,1)]
         public void Test_GetListOfTopic(int topicId, int resultlength)
         {
             TopicChatContext chatContext = new TopicChatContext();

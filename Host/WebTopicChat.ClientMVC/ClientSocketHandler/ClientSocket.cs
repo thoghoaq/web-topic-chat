@@ -26,7 +26,6 @@ namespace WebTopicChat.ClientMVC.ClientSocketHandler
                 {
                     attempts++;
                     Console.WriteLine($"{_clientSocket}: Connection attempt " + attempts);
-                    // Change IPAddress.Loopback to a remote IP to connect to a remote host.
                     _clientSocket.Connect(IPAddress.Loopback, PORT);
                 }
                 catch (SocketException)
@@ -37,24 +36,16 @@ namespace WebTopicChat.ClientMVC.ClientSocketHandler
             Console.WriteLine("Connected");
         }
 
-        /// <summary>
-        /// Loop receive message from server
-        /// </summary>
         public void RequestLoop()
         {
             Console.WriteLine(@"<Type ""exit"" to properly disconnect client>");
-            // Create a new thread to receive incoming messages
             var receiveThread = new Thread(ReceiveResponse);
-            // Start the receive thread
             receiveThread.Start();
         }
 
-        /// <summary>
-        /// Close socket and exit program.
-        /// </summary>
         public void Exit()
         {
-            SendString("exit"); // Tell the server we are exiting
+            SendString("exit");
             _clientSocket.Shutdown(SocketShutdown.Both);
             _clientSocket.Close();
             Environment.Exit(0);
@@ -70,9 +61,6 @@ namespace WebTopicChat.ClientMVC.ClientSocketHandler
             }
         }
 
-        /// <summary>
-        /// Sends a string to the server with ASCII encoding.
-        /// </summary>
         private void SendString(string text)
         {
             byte[] data = new byte[BUFFER_SIZE];
