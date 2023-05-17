@@ -48,7 +48,7 @@ namespace WebTopicChat.ClientMVC.ClientSocketHandler
             SendString("exit");
             _clientSocket.Shutdown(SocketShutdown.Both);
             _clientSocket.Close();
-            Environment.Exit(0);
+            //Environment.Exit(0);
         }
 
         public void SendRequest(string request)

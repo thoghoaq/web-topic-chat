@@ -43,11 +43,12 @@ namespace WebTopicChat.ClientMVC.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            // Start client socket.
-            ClientSocket clientSocket = new(new Socket
-                        (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
-            clientSocket.ConnectToServer();
-            clientSocket.RequestLoop();
+            //// Start client socket.
+            //ClientSocket clientSocket = new(new Socket
+            //            (AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp));
+            //clientSocket.ConnectToServer();
+            //clientSocket.RequestLoop();
+            //clientSocket.Exit();
             return RedirectToAction("Index", "Chat", new { topicId, topicName });
         }
 
