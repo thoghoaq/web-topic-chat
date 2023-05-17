@@ -5,13 +5,14 @@ namespace Test.UnitTest
 {
     public class SubscribeTest
     {
+        private readonly TopicChatContext chatContext = new TopicChatContext();
+
         [Theory]
         [InlineData(3, 1)]
         [InlineData(1, 3)]
         public void SubTestSuccess(int clientId, int topicId)
         {
-            TopicChatContext topicChatContext = new TopicChatContext();
-            ClientTopicRepository clientTopicRepository = new ClientTopicRepository(topicChatContext);
+            ClientTopicRepository clientTopicRepository = new ClientTopicRepository(chatContext);
             var clientTopic = clientTopicRepository.AddClientTopic(clientId, topicId);
             Assert.Equal(clientId, clientTopic.ClientId);
             Assert.Equal(topicId, clientTopic.TopicId);
@@ -25,8 +26,7 @@ namespace Test.UnitTest
         [InlineData(2, 1)]
         public void SubTestFailed(int clientId, int topicId)
         {
-            TopicChatContext topicChatContext = new TopicChatContext();
-            ClientTopicRepository clientTopicRepository = new ClientTopicRepository(topicChatContext);
+            ClientTopicRepository clientTopicRepository = new ClientTopicRepository(chatContext);
             var clientTopic = clientTopicRepository.AddClientTopic(clientId, topicId);
             Assert.True(clientTopic == null);
         }
@@ -35,8 +35,7 @@ namespace Test.UnitTest
         [InlineData(2, 1)]
         public void UnsubTest(int clientId, int topicId)
         {
-            TopicChatContext topicChatContext = new TopicChatContext();
-            ClientTopicRepository clientTopicRepository = new ClientTopicRepository(topicChatContext);
+            ClientTopicRepository clientTopicRepository = new ClientTopicRepository(chatContext);
             var clientTopic = clientTopicRepository.RemoveClientTopic(clientId, topicId);
             Assert.True(clientTopic);
         }

@@ -5,10 +5,11 @@ namespace Test.UnitTest
 {
     public class TopicTest
     {
+        private readonly TopicChatContext chatContext = new TopicChatContext();
+
         [Fact]
         public void Test_GetList()
         {
-            TopicChatContext chatContext = new TopicChatContext();
             TopicRepository topicRepository = new TopicRepository(chatContext);
             var listTopic = topicRepository.GetList();
             Assert.Equal(7, listTopic.Count);
@@ -21,7 +22,6 @@ namespace Test.UnitTest
         //[InlineData("abc", 10)] 
         public void Test_AddTopic(string name, int ownerId)
         {
-            TopicChatContext chatContext = new TopicChatContext();
             TopicRepository topicRepository = new TopicRepository(chatContext);
             var topic = topicRepository.AddTopic(name, ownerId);
             Assert.True(topic != null);
