@@ -24,15 +24,15 @@
     <section class="gradient-custom">
         <div class="container py-5">
             <div class="row">
-                <div class="row">
+                <div class="row mt-1 mb-3">
                     <div class="col-md-9 text-left">
-                        <div class="topic">Topic: @ViewBag.TopicName</div>
+                        <div class="topic text-white fw-bold">Topic: @ViewBag.TopicName</div>
                     </div>
-                    <div class="col-md-3 text-right">
+                    <div class="col-md-3 text-end">
                         <a href="/Topic/GetList" class="btn btn-light btn-lg btn-rounded w-auto">Back to Home</a>
                     </div>
                 </div>
-                <div class="col-md-12 col-lg-12 col-xl-12 mt-2 scroll">
+                <div class="col-md-12 col-lg-12 col-xl-12 mt-2 scroll h-100 mb-0">
                     <ul class="list-unstyled text-white">
                         @foreach (var message in Model)
                         {
@@ -43,7 +43,7 @@
                                         <p class="fw-bold mb-0">@message.SenderName</p>
                                         <p class="text-light small mb-0"><i class="far fa-clock"></i>@message.CreateTime</p>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body @TextAlignment(message.SenderId == userId)">
                                         <p class="mb-0">
                                             @message.Content
                                         </p>
@@ -54,10 +54,15 @@
                     </ul>
                 </div>
                 <form action="/Chat/SendMessage" method="post">
-                    <div class="row">
-                        <input type="hidden" name="topicIdParam" value="@ViewBag.TopicId">
-                        <textarea class="form-control mt-3 mb-3" id="textAreaExample3" rows="4" name="message" placeholder="Message"></textarea>
-                        <button type="submit" class="btn btn-light btn-lg btn-rounded w-auto">Send</button>
+                    <div class="row chat-box w-100">
+                        <div class="col-md-10 col-lg-10 col-xl-10 mb-2">
+                            <input type="hidden" name="topicIdParam" value="@ViewBag.TopicId">
+                            <input type="hidden" name="topicNameParam" value="@ViewBag.TopicName">
+                            <textarea class="form-control mt-3 mb-3 w-100" id="textAreaExample3" rows="4" name="message" placeholder="Message"></textarea>
+                        </div>
+                        <div class="col-md-2 col-lg-2 col-xl-2 mt-2 d-flex justify-content-center align-items-center">
+                            <button type="submit" class="btn btn-light btn-lg btn-rounded w-100 h-50 text-center">Send</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -70,6 +75,11 @@
     string GetChatAlignment(bool isMyChat)
     {
         return isMyChat ? "justify-content-end" : "justify-content-start";
+    }
+
+    string TextAlignment(bool isMyChat)
+    {
+        return isMyChat ? "text-end" : "text-start";
     }
 }
 <script>

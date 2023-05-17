@@ -1,11 +1,13 @@
-﻿.gradient-custom {
-    background: #fccb90;
-    background: -webkit-linear-gradient(to bottom right, rgba(252, 203, 144, 1), rgba(213, 126, 235, 1));
-    background: linear-gradient(to bottom right, rgba(252, 203, 144, 1), rgba(213, 126, 235, 1))
+﻿body {
+    background-image: url("../img/bgmain.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
 }
 
 .mask-custom {
-    background: rgba(24, 24, 16, .2);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 2em;
     backdrop-filter: blur(15px);
     border: 2px solid rgba(255, 255, 255, 0.05);
@@ -25,4 +27,15 @@
     overflow-y: scroll;
 }
 
+.h-full {
+    height: 100%;
+}
+
+.chat-box {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding-left: 60px;
+    padding-right: 80px;
+}
 

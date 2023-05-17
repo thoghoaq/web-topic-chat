@@ -17,18 +17,20 @@
     <div class="col-md-12 col-lg-12 col-xl-12 text-white text-center mt-5">
         WELCOME TO <br /> OUR TOPIC-CHAT WEB
     </div>
-    <form class="mt-5 mb-4" asp-action="Auth" method="post">
-        <h5 class="text-center">
+    <form id="login-form "class="form1 mt-5 mb-4" asp-action="Auth" method="post">
+        <h5 class="text-center font14">
             @if (ViewBag.ErrorMessage != null)
             {
                 <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
             }
         </h5>
         <div>
-            <input class="form-control mr-sm-2 m-1" type="text" asp-for="UserName" placeholder="Username" />
+            <input id="username" class="form-control mr-sm-2 m-1" type="text" asp-for="UserName" placeholder="Username" required/>
+            <span id="lbusername" class="text-danger"></span>
         </div>
         <div>
-            <input class="form-control mr-sm-2 m-1" asp-for="Password" placeholder="Passwword" />
+            <input id="password" class="form-control mr-sm-2 m-1" asp-for="Password" placeholder="Password" required/>
+            <span id="lbpassword" class="text-danger"></span>
         </div>
         <button class="form-control mr-sm-2 m-1 f" style="width:100px" type="submit">Login</button>
     </form>
@@ -36,7 +38,7 @@
         <div class="text-center text-white mt-0">
             <div class="font">
                 Don't have an account?
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modalForm"> 
+                <a class="text-primary" data-bs-toggle="modal" data-bs-target="#modalForm"> 
                     Sign up
                 </a>
             </div>
@@ -44,19 +46,25 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title text-center text-black" id="exampleModalLabel">SIGN IN</h5>
+                            <h5 class="modal-title text-center text-black fw-bold" id="exampleModalLabel">SIGN UP</h5>
                             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form asp-action="Regist" method="post">
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" name="userName" placeholder="Your username" />
+                                <div class="text-centerc font14">
+                                    @if (ViewBag.ErrorMessage1 != null)
+                                    {
+                                        <div class="alert alert-danger">@ViewBag.ErrorMessage1</div>
+                                    }
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" name="password" placeholder="Your password" />
+                                    <input type="text" class="form-control" name="userName" placeholder="Your username" required/>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" name="displayName" placeholder="Your displayname" />
+                                    <input type="text" class="form-control" name="password" placeholder="Your password" required/>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="displayName" placeholder="Your displayname" required/>
                                 </div>
                                 <div class="modal-footer d-block">
                                     <button type="submit" class="btn btn-warning float-end">Submit</button>
@@ -70,3 +78,30 @@
     </div>
 </body>
 </html>
+
+<script>
+    @Html.Raw(ViewBag.Script)
+</script>
+
+@*<script>
+    function validateForm() {
+
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        document.getElementById("lbusername").innerHTML = "";
+        document.getElementById("lbpassword").innerHTML = "";
+
+        if (username == null || username == "") {
+            document.getElementById("lbusername").innerHTML = "Please enter your username";
+            result = false;
+        }
+
+        if (password == null || password == "") {
+            document.getElementById("lbpassword").innerHTML = "Please enter your password";
+            result = false;
+        }
+
+        return true;
+    }
+</script>*@

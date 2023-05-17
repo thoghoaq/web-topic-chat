@@ -16,6 +16,15 @@ namespace WebTopicChat.ClientMVC.Controllers
             return View();
         }
 
+        public IActionResult IndexRegistError()
+        {
+            // Toggle modal on screen initialization
+            string script = "window.onload = function() {\r\n    var modal = document.getElementById('modalForm');\r\n    var modalToggle = new bootstrap.Modal(modal);\r\n    modalToggle.toggle();\r\n  }";
+            ViewBag.Script = script;
+            ViewBag.ErrorMessage1 = "Username already exists. Please choose a different one.";
+            return View("Index");
+        }
+
         private readonly HttpClient clients = null;
         private string apiUrl = "";
 
@@ -62,11 +71,10 @@ namespace WebTopicChat.ClientMVC.Controllers
 
             var content = new StringContent(JsonConvert.SerializeObject(requestBody), Encoding.UTF8, "application/json");
             var response = await clients.PostAsync(apiUrl, content);
+            var result = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadAsStringAsync();
-
                 // extract the id from the JSON response
                 var json = JObject.Parse(result);
                 var userid = json["id"].Value<int>();
@@ -74,12 +82,10 @@ namespace WebTopicChat.ClientMVC.Controllers
                 // store the id in session
                 HttpContext.Session.SetInt32("UserID", userid);
                 return RedirectToAction("GetList", "Topic");
-
             }
             else
             {
-                ViewBag.ErrorMessage = "Username already exists. Please choose a different one.";
-                return View();
+                return RedirectToAction("IndexRegistError");
             }
             
         }

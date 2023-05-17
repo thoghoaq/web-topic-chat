@@ -14,7 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid w-75">
         <div class="row">
             <div class="col-12 col-md-12 col-xl-12 text-center center">
                 @if (Model == null || !Model.Any())
@@ -28,6 +28,7 @@
                             <tr>
                                 <th>Topic Name</th>
                                 <th>Owner Name</th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -53,11 +54,11 @@
                                     <td>
                                         @if (topic.IsSubcribed == false)
                                         {
-                                            <button class="join-btn bg-primary" onclick="window.location.href='@Url.Action("Sub", new { id = topic.Id })'">Sub</button>
+                                            <button class="join-btn bg-primary p-1 font20" onclick="window.location.href='@Url.Action("Sub", new { id = topic.Id })'">Sub</button>
                                         }
                                         else
                                         {
-                                            <button class="join-btn bg-danger" onclick="window.location.href='@Url.Action("UnSub", new { id = topic.Id })'">UnSub</button>
+                                            <button class="join-btn bg-danger p-1 font20" onclick="window.location.href='@Url.Action("UnSub", new { id = topic.Id })'">UnSub</button>
                                         }
                                     </td>
                                 </tr>
@@ -65,12 +66,12 @@
                         </tbody>
                     </table>
                 }
-                <div class="text-white">
+                <div class="text-white mt-3 mb-4">
                     <div class="align-items-center font20">
                         If you don’t subcribe any topic?
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modalForm">
+                        <a class="text-primary" data-bs-toggle="modal" data-bs-target="#modalForm">
                             Create new
-                        </button>
+                        </a>
                     </div>
                 </div>
                 
@@ -78,13 +79,13 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-center text-black" id="exampleModalLabel">NEW TOPIC</h5>
+                                <h5 class="modal-title text-center text-black fw-bold" id="exampleModalLabel">CREATE NEW TOPIC</h5>
                                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body"> 
                                 <form asp-action="Create" method="post">
                                     <div class="mb-3">
-                                        <input type="text" class="form-control" name="topicName" placeholder="Topic Name" />
+                                        <input type="text" class="form-control" name="topicName" placeholder="Topic Name" required/>
                                     </div>
                                     <div class="modal-footer d-block">
                                         <button type="submit" class="btn btn-warning float-end">Submit</button>

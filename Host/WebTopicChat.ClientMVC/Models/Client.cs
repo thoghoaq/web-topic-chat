@@ -1,4 +1,6 @@
-﻿namespace WebTopicChat.ClientMVC.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebTopicChat.ClientMVC.Models
 {
     public class Client
     {

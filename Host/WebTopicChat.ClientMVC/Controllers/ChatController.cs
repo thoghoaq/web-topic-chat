@@ -54,7 +54,7 @@ namespace WebTopicChat.ClientMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SendMessage(int topicIdParam, string message)
+        public async Task<IActionResult> SendMessage(int topicIdParam, string topicNameParam, string message)
         {
             apiUrl = ApiUrls.reUrl + $"topic/{topicIdParam}/send-message";
             int clientId = (int)HttpContext.Session.GetInt32("UserID");
@@ -81,7 +81,7 @@ namespace WebTopicChat.ClientMVC.Controllers
             {
                 Console.WriteLine("POST request failed with status code: " + response.StatusCode);
             }
-            return RedirectToAction("Index", "Chat", new { topicId = topicIdParam });
+            return RedirectToAction("Index", "Chat", new { topicId = topicIdParam, topicName = topicNameParam });
         }
     }
 }

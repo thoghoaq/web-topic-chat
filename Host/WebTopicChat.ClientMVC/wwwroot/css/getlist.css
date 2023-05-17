@@ -1,11 +1,11 @@
 ﻿body {
-    background-image: url("../img/Capture3.PNG");
+    background-image: url("../img/bgmain.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
     background-attachment: fixed;
     font-family: Courier New, Courier, monospace;
-    font-size: 55px;
+    font-size: 35px;
 }
 
 .join-btn {
@@ -20,4 +20,9 @@
 
 .font20 {
     font-size: 20px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
 }
